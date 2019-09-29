@@ -1,2 +1,2 @@
 # notes
-record somethings
+record something
