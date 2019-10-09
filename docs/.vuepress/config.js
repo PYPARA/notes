@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/notes/',
+  // base: '/notes/',
   title: 'PYPARA',
   description: '个人收藏记录',
   themeConfig: {
