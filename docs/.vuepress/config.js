@@ -2,6 +2,9 @@ module.exports = {
   // base: '/notes/',
   title: 'PYPARA',
   description: '个人收藏记录',
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }]
+  ],
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
