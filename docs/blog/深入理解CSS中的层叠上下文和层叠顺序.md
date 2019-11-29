@@ -24,7 +24,7 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 这里出现了一个名词-**z轴**，指的是什么呢？
 
 表示的是用户与屏幕的这条看不见的垂直线（参见下图示意-红线）：
-![网页中z轴示意](https://image.zhangxinxu.com/image/blog/201601/z-aris.png)
+![UTOOLS1575015866955.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575015866955.png)
 
 层叠上下文是一个概念，跟「[块状格式化上下文(BFC)](http://www.zhangxinxu.com/wordpress/?p=4588)」类似。然而，概念这个东西是比较虚比较抽象的，要想轻松理解，我们需要将其具象化。
 
@@ -34,7 +34,7 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 
 换句话说，页面中的元素有了层叠上下文，就好比我们普通老百姓当了官，一旦当了官，相比普通老百姓而言，离皇帝更近了，对不对，就等同于网页中元素级别更高，离我们用户更近了。
 
-![你懂的](https://image.zhangxinxu.com/image/emtion/point.gif)
+![UTOOLS1575015927360.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575015927360.png)
 
 ### 二、什么是层叠水平
 
@@ -46,7 +46,7 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 
 翻译成术语就是：普通元素的层叠水平优先由层叠上下文决定，因此，层叠水平的比较只有在当前层叠上下文元素中才有意义。
 
-![你懂的](https://image.zhangxinxu.com/image/emtion/point.gif)
+![UTOOLS1575015927360.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575015927360.png)
 
 需要注意的是，诸位千万不要把层叠水平和CSS的z-index属性混为一谈。没错，某些情况下z-index确实可以影响层叠水平，但是，只限于定位元素以及flex盒子的孩子元素；而层叠水平所有的元素都存在。
 
@@ -55,7 +55,7 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 再来说说层叠顺序。“层叠顺序”英文称作”stacking order”. 表示元素发生层叠时候有着特定的垂直显示顺序，注意，这里跟上面两个不一样，上面的**层叠上下文和层叠水平是概念**，而这里的**层叠顺序是规则**。
 
 在CSS2.1的年代，在CSS3还没有出现的时候（注意这里的前提），层叠顺序规则遵循下面这张图：
-![层叠顺序](https://image.zhangxinxu.com/image/blog/201601/2016-01-07_223349.png)
+![UTOOLS1575015963143.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575015963143.png)
 
 有人可能有见过类似图，那个图是很多很多年前老外绘制的，英文内容。而是更关键的是国内估计没有同行进行过验证与实践，实际上很多关键信息缺失。上面是我自己手动重绘的中文版同时补充很多其他地方绝对没有的重要知识信息。如果想要无水印高清大图，点击这里购买(0.5元)。
 
@@ -66,18 +66,18 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 3. z-index:0实际上和z-index:auto单纯从层叠水平上看，是可以看成是一样的。注意这里的措辞——“单纯从层叠水平上看”，实际上，两者在层叠上下文领域有着根本性的差异。
 
 下面我要向大家发问了，大家有没有想过，为什么内联元素的层叠顺序要比浮动元素和块状元素都高？
-![疑问](https://image.zhangxinxu.com/image/emtion/ask.gif)
+![UTOOLS1575016003901.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016003901.png)
 
 为什么呢？我明明感觉浮动元素和块状元素要更屌一点啊。
 
 嘿嘿嘿，我就不卖关子了，直接看下图的标注说明：
-![层叠顺序元素的标注说明](https://image.zhangxinxu.com/image/blog/201601/2016-01-07_235108.png)
+![UTOOLS1575016021813.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016021813.png)
 
 诸如`border`/`background`一般为装饰属性，而浮动和块状元素一般用作布局，而内联元素都是内容。网页中最重要的是什么？当然是内容了哈，对不对！
 
 因此，一定要让内容的层叠顺序相当高，当发生层叠是很好，重要的文字啊图片内容可以优先暴露在屏幕上。例如，文字和浮动图片重叠的时候：
 
-![浮动和文字重叠](https://image.zhangxinxu.com/image/blog/201601/2016-01-07_235830.jpg)
+![UTOOLS1575016038726.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016038726.png)
 
 上面说的这些层叠顺序规则还是老时代的，如果把CSS3也牵扯进来，科科，事情就不一样了。
 
@@ -130,7 +130,7 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 
 如下HTML代码：
 
-```
+```html
 <div style="position:relative; z-index:auto;">
     <img src="mm1.jpg" style="position:absolute; z-index:2;">    <-- 横妹子 -->
 </div>
@@ -139,15 +139,13 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 </div>
 ```
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg)
+![UTOOLS1575016333811.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016333811.png)
 
 大家会发现，竖着的妹子(mm2)被横着的妹子(mm1)给覆盖了。
 
 下面，我们对父级简单调整下，把`z-index:auto`改成层叠水平一致的`z-index:0`, 代码如下：
 
-```
+```html
 <div style="position:relative; z-index:0;">
     <img src="mm1.jpg" style="position:absolute; z-index:2;">    <-- 横妹子 -->
 </div>
@@ -156,16 +154,14 @@ by [zhangxinxu](http://www.zhangxinxu.com/) from [http://www.zhangxinxu.com](htt
 </div>
 ```
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg)
+![UTOOLS1575016379925.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016379925.png)
 
 大家会发现，尼玛反过来了，竖着的妹子(mm2)这回趴在了横着的妹子(mm1)身上。
 
-![百合大法好](https://image.zhangxinxu.com/image/blog/201601/2016-01-08_220622.jpg)
+![UTOOLS1575016398729.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016398729.png)
 
 为什么小小的改变会有想法的结果呢？
-![思考](https://image.zhangxinxu.com/image/emtion/think-2.gif)
+![UTOOLS1575016412605.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016412605.png)
 
 差别就在于，`z-index:0`所在的`<div>`元素是层叠上下文元素，而`z-index:auto`所在的`<div>`元素是一个普通的元素，于是，里面的两个`<img>`妹子的层叠比较就不受父级的影响，两者直接套用层叠黄金准则，这里，两者有着明显不一的`z-index`值，因此，遵循“**谁大谁上**”的准则，于是，`z-index`为`2`的那个横妹子，就趴在了`z-index`为`1`的竖妹子身上。
 
@@ -198,12 +194,14 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 如下HTML和CSS代码：
 
-```
+```html
 <div class="box">
     <div>
     	<img src="mm1.jpg">
     </div>
 </div>
+```
+```css
 .box {  }
 .box > div { background-color: blue; z-index: 1; }    /* 此时该div是普通元素，z-index无效 */
 .box > div > img { 
@@ -213,16 +211,16 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016664811.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016664811.png)√
 
 会发现，妹子跑到蓝色背景的下面了。为什么呢？层叠顺序图可以找到答案，如下：
-![负值z-index的层叠顺序](https://image.zhangxinxu.com/image/blog/201601/2016-01-08_235511.png)
+![UTOOLS1575016690050.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016690050.png)
 
 从上图可以看出负值z-index的层叠顺序在block水平元素的下面，而蓝色背景`div`元素是个普通元素，因此，妹子直接穿越过去，在蓝色背景后面的显示了。
 
 现在，我们CSS微调下，增加`display:flex`, 如下：
 
-```
+```css
 .box { display: flex; }
 .box > div { background-color: blue; z-index: 1; }    /* 此时该div是层叠上下文元素，同时z-index生效 */
 .box > div > img { 
@@ -232,10 +230,10 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 结果：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016712810.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016712810.png)
 
 会发现，妹子在蓝色背景上面显示了，为什么呢？层叠顺序图可以找到答案，如下：
-![img](https://image.zhangxinxu.com/image/blog/201601/2016-01-08_235217.png)
+![UTOOLS1575016722862.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016722862.png)
 
 从上图可以看出负值`z-index`的层叠顺序在当前第一个父层叠上下文元素的上面，而此时，那个`z-index`值为`1`的蓝色背景`<div>`的父元素的`display`值是`flex`，一下子升官发财变成层叠上下文元素了，于是，图片在蓝色背景上面显示了。这个现象也证实了层叠上下文元素是`flex`子元素，而不是`flex`容器元素。
 
@@ -246,10 +244,12 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 如下HTML和CSS代码：
 
-```
+```html
 <div class="box">
     <img src="mm1.jpg">
 </div>
+```
+```css
 .box { background-color: blue;  }
 .box > img { 
   position: relative; z-index: -1; right: -150px;
@@ -258,11 +258,11 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016751114.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016751114.png)
 
 然后价格透明度，例如50%透明：
 
-```
+```css
 .box { background-color: blue; opacity: 0.5;  }
 .box > img { 
   position: relative; z-index: -1; right: -150px;
@@ -271,7 +271,7 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016772366.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016772366.png)
 
 原因就是半透明元素具有层叠上下文，妹子图片的`z-index:-1`无法穿透，于是，在蓝色背景上面乖乖显示了。
 
@@ -280,25 +280,21 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 我们直接看应用后的结果，如下CSS代码：
 
-```
+```css
 .box { background-color: blue; transform: rotate(15deg);  }
 .box > img { 
   position: relative; z-index: -1; right: -150px;
 }
 ```
 
-结果如下：
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
-
-妹子同样在蓝色背景之上。
+![UTOOLS1575016799207.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016799207.png)
 
 **4. mix-blend-mode与层叠上下文**
 `mix-blend-mode`类似于PS中的混合模式，之前专门有文章介绍-“[CSS3混合模式mix-blend-mode简介](http://www.zhangxinxu.com/wordpress/2015/05/css3-mix-blend-mode-background-blend-mode/)”。
 
 元素和白色背景混合。无论哪种模式，要么全白，要么没有任何变化。为了让大家有直观感受，因此，下面例子我特意加了个原创平铺背景：
 
-```
+```css
 .box { background-color: blue; mix-blend-mode: darken;  }
 .box > img { 
   position: relative; z-index: -1; right: -150px;
@@ -307,7 +303,7 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016824644.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016824644.png)
 
 需要注意的是，目前，IE浏览器(包括IE14)还不支持`mix-blend-mode`，因此，要想看到妹子在背景色之上，请使用Chrome或FireFox。
 
@@ -318,7 +314,7 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 我们使用常见的模糊效果示意下：
 
-```
+```css
 .box { background-color: blue; filter: blur(5px);  }
 .box > img { 
   position: relative; z-index: -1; right: -150px;
@@ -327,7 +323,7 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016840319.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016840319.png)
 
 好吧，果然被你猜对了，妹子蓝色床上躺着，只是你眼镜摘了，看得有些不够真切罢了。
 
@@ -336,7 +332,7 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 要演示这个效果，我需要重新设计下，如下HTML结构：
 
-```
+```html
 <img src="img/mm2.jpg" class="mode">
 <div class="box">
     <img src="mm1.jpg">
@@ -345,7 +341,7 @@ CSS3的出现除了带来了新属性，同时还对过去的很多规则发出�
 
 CSS主要代码如下：
 
-```
+```css
 .mode {
   /* 竖妹子绝对定位，同时混合模式 */
   position: absolute; mix-blend-mode: darken;
@@ -358,15 +354,13 @@ CSS主要代码如下：
 }
 ```
 
-结构如下：
+结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg)
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016877640.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016877640.png)
 
 会发现，横妹子被混合模式了。此时，我们给妹子所在容器增加`isolation:isolate`，如下CSS所示：
 
-```
+```css
 .mode {
   /* 竖妹子绝对定位，同时混合模式 */
   position: absolute; mix-blend-mode: darken;
@@ -381,9 +375,7 @@ CSS主要代码如下：
 
 结果为：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg)
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016896838.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016896838.png)
 
 会发现横着的妹子跑到蓝色背景上面了。这表明确实创建了层叠上下文。
 
@@ -392,7 +384,7 @@ CSS主要代码如下：
 
 都是类似的演示代码：
 
-```
+```css
 .box { background-color: blue; will-change: transform;  }
 .box > img { 
   position: relative; z-index: -1; right: -150px;
@@ -401,7 +393,7 @@ CSS主要代码如下：
 
 结果如下：
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016914230.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016914230.png)
 
 果然不出所料，妹子上了蓝色的背景。
 
@@ -416,7 +408,7 @@ CSS主要代码如下：
 
 于是乎，我们上面提供的层叠顺序表，实际上还是缺少其他重要信息。我又花功夫重新绘制了一个更完整的7阶层叠顺序图（同样的版权所有，商业请购买，可得无水印大图）：
 
-![更完整的7阶层叠顺序图](https://image.zhangxinxu.com/image/blog/201601/2016-01-09_211116.png)
+![UTOOLS1575016928744.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016928744.png)
 
 大家知道为什么定位元素会层叠在普通元素的上面吗？
 
@@ -426,15 +418,13 @@ CSS主要代码如下：
 
 我们可以速度测试下：
 
-```
+```html
 <img src="mm1" style="position:relative">
 <img src="mm2" style="transform:scale(1);">
 <img src="mm2" style="transform:scale(1);">
 <img src="mm1" style="position:relative">
 ```
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)![img](https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg)
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg)![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016949022.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016949022.png)
 
 会发现，两者样式一模一样，仅仅是在DOM流中的位置不一样，导致他们的层叠表现不一样，后面的妹子趴在了前面妹子的身上。这也说明了，层叠上下文元素的层叠顺序就是`z-index:auto`级别。
 
@@ -443,7 +433,7 @@ CSS主要代码如下：
 
 同样，举个简单例子，看下`z-index:-1`和`z-index:1`变化对层叠表现的影响，如下两段HTML：
 
-```
+```html
 <div style="display:flex; background:blue;">
    <img src="mm1.jpg" style="z-index:-1;">
 </div>
@@ -454,9 +444,7 @@ CSS主要代码如下：
 
 最后，会发现，`z-index:-1`跑到了背景色小面，而`z-index:1`高高在上。
 
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
-
-![img](https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg)
+![UTOOLS1575016967417.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016967417.png)
 
 **一个与层叠上下文相关的有趣的显示现象**
 在实际项目中，我们可能会渐进使用CSS3的fadeIn淡入animation效果增强体验，于是，我们可能就会遇到类似下面的现象：
@@ -465,17 +453,17 @@ CSS主要代码如下：
 
 有一个绝对定位的黑色半透明层覆盖在图片上，默认显示是这样的：
 
-![文字在妹子上](https://image.zhangxinxu.com/image/blog/201801/2018-01-09_004641.png)
+![UTOOLS1575016980549.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575016980549.png)
 
 但是，一旦图片开始走fadeIn淡出的CSS3动画，文字跑到图片后面去了![img](https://mat1.gtimg.com/www/mb/images/face/36.gif)：
 
-![文字跑到图片后面](https://image.zhangxinxu.com/image/blog/201801/2018-01-09_004654.png)
+![UTOOLS1575017009881.png](https://pyimage.oss-cn-shanghai.aliyuncs.com/UTOOLS1575017009881.png)
 
 为什么会这样？
 
 实际上，学了本文的内容，就很简单了！fadeIn动画本质是`opacity`透明度的变化：
 
-```
+```css
 @keyframes fadeIn {
   0% { 
     opacity: 0;

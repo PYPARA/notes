@@ -1,1 +1,2 @@
-## to be continued
+## 简介
+一些小技巧 to be continued

@@ -6,7 +6,7 @@
 
 ### 语法
 
-```
+```javascript
 for (variable in object) {...}
 ```
 

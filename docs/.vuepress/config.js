@@ -36,6 +36,12 @@ module.exports = {
         '深入理解CSS中的层叠上下文和层叠顺序',
         'for...in、for...of and Array.prototype.forEach()',
         'Vue源码笔记'
+      ],
+      '/notes/': [
+        '',
+        '原生小技巧',
+        'vue小技巧',
+        'react小技巧'
       ]
     },
     sidebarDepth: 3
