@@ -27,3 +27,9 @@ add_header Pragma "no-cache";
 add_header Cache-Control "no-store, must-revalidate";
 }
 ```
+
+### ios vue项目请求地理位置权限异常
+进入首页需要请求定位权限，否则后续页面默认权限是禁用状态
+
+### ios http图片资源不显示问题
+https的站点访问http的图片默认会被阻止
