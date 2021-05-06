@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ys</title>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    img {
+      height: 100px;
+    }
+
+    .ys-btn {
+      background-image: url(./images/btn.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: inline-block;
+      width: 187px;
+      height: 52px;
+      color: #ffffff;
+      text-align: center;
+      line-height: 52px;
+      box-sizing: border-box;
+      padding-top: 5px;
+      font-size: 18px;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" style="display: none;">
+    <img class="logo" src="./images/logo.png" alt=""><br>
+    <img class="logo2" src="./images/logo2.jpeg" alt="">
+
+    <img class="paimeng1" src="./images/paimeng1.png" alt="">
+    <img class="paimeng2" src="./images/paimeng2.png" alt="">
+    <img class="paimeng3" src="./images/paimeng3.png" alt="">
+    <img class="paimeng4" src="./images/paimeng_error.png" alt="">
+    <img src="./images/mola.png" alt="">
+    <img src="./images/jitui.png" alt="">
+    <div style="color: #ffffff;">{{ obj.num }}</div>
+    <div style="color: #ffffff;">{{ obj.num2 }}</div>
+
+    <div style="margin-top: 30px;">
+      <span @click="handleClick('from')" class="ys-btn">From</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+      <span @click="handleClick('stagger')" class="ys-btn">Stagger</span>
+      <span @click="handleClick('timeLine')" class="ys-btn">TimeLine</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+      <span @click="handleClick('to')" class="ys-btn">To</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          obj: {
+            num: 10,
+            num2: 'aaa'
+          }
+        }
+      },
+      methods: {
+        handleClick(command) {
+          console.log(command);
+          switch (command) {
+            case 'from':
+              gsap.from(".logo", {
+                opacity: 0,
+                x: 50,
+                scale: 0.5,
+                duration: 1,
+                ease: 'bounce'
+              });
+              gsap.to(this.obj, {
+                num: 100,
+                num2: 'bbb',
+                duration: 1
+              })
+              break;
+            case 'to':
+              gsap.to(".logo2", {
+                opacity: 0,
+                x: 50,
+                rotate: 360,
+                duration: 1
+              })
+              gsap.to(".logo2", {
+                x: 0,
+                rotate: 0,
+                duration: 0,
+                delay: 1
+              })
+              gsap.to(".logo2", {
+                opacity: 1,
+                duration: 0.5,
+                delay: 1.01
+
+              })
+              break;
+            case 'stagger':
+              gsap.to("img", 1, {
+                scale: 0.1,
+                y: 60,
+                yoyo: true,
+                repeat: -1,
+                ease: "power1.inOut",
+                stagger: {
+                  amount: 1.5,
+                  grid: "auto",
+                  from: "center"
+                }
+              });
+              break;
+            case 'timeLine':
+              var tl = gsap.timeline({ repeat: 0, repeatDelay: 1 });
+
+              tl.to(".paimeng1", { duration: 1, x: 200 })
+                //start 1 second after previous tween ends (gap)
+                .to(".paimeng2", { duration: 1, x: 200, scale: 0.2 }, "-=1")
+                //add a label at the end
+                .addLabel("greyAndPink")
+                //start both of these animations at the same time, at the "greyAndPink" label.
+                .to(".paimeng3", { duration: 1, x: 200, scale: 2, y: 20 }, "greyAndPink")
+                .to(".paimeng4", { duration: 1, x: 200, rotation: 360 }, "greyAndPink")
+                
+              break;
+            default:
+              break;
+          }
+        }
+      },
+      created() {
+        document.getElementById('app').style.display = 'block'
+
+      },
+      mounted() {
+        // gsap.fromTo("#app", {
+        //   display: 'none',
+        //   opacity: 0.5
+        // }, {
+        //   display: 'block',
+        //   opacity: 1,
+        //   duration: 5
+        // });
+      }
+    })
+    // gsap.effects.explode(".logo", {
+    //   direction: "up", //can reference any properties that the author decides - in this case "direction".
+    //   duration: 3
+    // });
+  </script>
+</body>
+
+</html>
