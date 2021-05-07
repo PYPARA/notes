@@ -36,8 +36,17 @@
       <img style="background-color: green;width: 100vw;height: 100vw;position: absolute;top: 0;left: 0;margin: 0;" class="paimeng7" src="./images/paimeng3.png" alt="">
     </div>
 
-
     <img class="paimeng8" style="background-color: #ffffff;" src="./images/paimeng_error.png" alt="">
+    <div class="paimeng-container2" style="width: 100vw;height: 100vw;position: relative;overflow-x: hidden;">
+      <div style="width: 400vw;font-size: 0;">
+        <img class="panel" style="background-color: black;width: 100vw;height: 100vw;margin: 0;display: inline-block;" src="./images/paimeng1.png" alt="">
+        <img class="panel" style="background-color: orange;width: 100vw;height: 100vw;margin: 0;display: inline-block;" src="./images/paimeng1.png" alt="">
+        <img class="panel" style="background-color: purple;width: 100vw;height: 100vw;margin: 0;display: inline-block;" src="./images/paimeng2.png" alt="">
+        <img class="panel" style="background-color: green;width: 100vw;height: 100vw;margin: 0;display: inline-block;" src="./images/paimeng3.png" alt="">
+      </div>
+      
+    </div>
+
     <img class="paimeng9" src="./images/paimeng1.png" alt="">
     <img class="paimeng10" src="./images/paimeng2.png" alt="">
     <img class="paimeng11" src="./images/paimeng3.png" alt="">
@@ -184,7 +193,7 @@
           start: 'top top',
           end: '+=1000',
           scrub: true,
-          markers: true,
+          // markers: true,
           pin: true,
           anticipatePin: 1
         })
@@ -194,13 +203,46 @@
           start: 'top top',
           end: '+=150',
           // scrub: true,
-          markers: true,
+          // markers: true,
           pin: true,
           pinSpacing: false
         })
 
         // Snapping
-        
+        let sections = gsap.utils.toArray('.panel')
+        gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: '.paimeng-container2',
+            pin: true,
+            scrub: 2,
+            snap: 1 / (sections.length - 1),
+            end: () => '+=' + document.querySelector('.paimeng-container2').offsetWidth
+          }
+        })
+
+        // Callbacks and Custom Options
+        ScrollTrigger.create({
+          trigger: '.paimeng9',
+          start: 'top center',
+          end: 'top 100px',
+          markers: true,
+          onEnter: () => console.log('enter'),
+          onLeave: () => console.log('leave'),
+          onEnterBack: () => console.log('enter back'),
+          onLeaveBack: () => console.log('leave back'),
+          onUpdate: (self) => console.log('update', self.progress.toFixed(3)),
+          onToggle: (self) => console.log('toggle', self.isActive),
+          toggleClass: 'active'
+        })
+
+        // scrollTrigger.defaults({
+          // horizontal: true
+          // scroller: '.container'
+        // })
+
+
       }
     })
   </script>
