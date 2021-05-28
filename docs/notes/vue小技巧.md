@@ -19,8 +19,9 @@ router.onError((error) => {
   }
 })
 ```
-
+## nginx相关
 ```nginx
+<!-- 用于控制html页面不使用缓存 -->
 if ($request_filename ~* .*.(html|htm)$)
 {
 expires -1;
@@ -35,6 +36,17 @@ rewrite ^/(.*) /xxxxx/index.html last;
 break;
 }
 
+```
+```nginx
+<!-- 对应404等页面，设置重定向的时候需要去除可能的缓存 -->
+<!-- nginx1.7.5后，要加 always 避免错误状态下添加header失效 -->
+error_page  403 404 500 502 503 504  /404.html;
+location = /404.html {
+    root   /Users/panyong/Documents/Wonders;
+    expires -1;
+    add_header Pragma "no-cache" always;
+    add_header Cache-Control "no-store, must-revalidate" always;
+}
 ```
 
 ## ios vue项目请求地理位置权限异常
