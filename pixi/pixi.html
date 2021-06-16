@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pixi</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>
+
+<body>
+
+  <script type="text/javascript">
+    let type = "WebGL"
+    if (!PIXI.utils.isWebGLSupported()) {
+      type = "canvas"
+    }
+    PIXI.utils.sayHello(type)
+
+    let app = new PIXI.Application({ 
+      width: document.documentElement.clientWidth, 
+      height: document.documentElement.clientHeight,
+      // antialias使得字体的边界和几何图形更加圆滑
+      antialias: true,
+      // transparent将整个Canvas标签的透明度进行了设置
+      transparent: false,
+      // resolution让Pixi在不同的分辨率和像素密度的平台上运行变得简单
+      resolution: 1,
+      // 强制使用Canvas引擎绘制而抛弃WebGL
+      // forceCanvas: true,
+
+    });
+    document.body.appendChild(app.view);
+    // 如果你需要在你创建canvas标签之后改变它的背景色，设置 app.renderer对象的backgroundColor属性为一个任何的十六进制颜色
+    app.renderer.backgroundColor = 0x061639;
+
+    
+    // 获取宽高
+    console.log(app.renderer.view.width);
+    console.log(app.renderer.view.height);
+
+  </script>
+
+</body>
+
+</html>

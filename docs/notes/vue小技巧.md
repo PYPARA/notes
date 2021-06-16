@@ -54,3 +54,26 @@ location = /404.html {
 
 ## ios http图片资源不显示问题
 https的站点访问http的图片默认会被阻止
+
+## 组件样式穿透到子组件
+```scss
+::v-deep {
+  color: '#ffffff'
+}
+```
+
+## vue 子组件值同步到父组件的绑定上
+```html
+<!-- 1.父组件绑定 v-model，子组件 emit input -->
+<component v-model=”aaa“></component>
+
+<script>
+this.$emit('input', value)
+</script>
+
+<!-- 2.父组件绑定 :aaa.sync，子组件 emit prop:aaa -->
+<component :aaa.sync=”bbb“></component>
+<script>
+this.$emit('prop:aaa', value)
+</script>
+```
