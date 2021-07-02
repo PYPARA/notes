@@ -77,3 +77,26 @@ this.$emit('input', value)
 this.$emit('prop:aaa', value)
 </script>
 ```
+
+## npm  
+### 获取当前的镜像地址
+npm get registry 
+### 切换成淘宝镜像
+npm config set registry http://registry.npm.taobao.org/
+### 换回原源
+npm config set registry https://registry.npmjs.org/
+
+### 安装
+npm install xxx 安装但不写入package.json；
+npm install xxx –save 安装并写入package.json的”dependencies”中；
+npm install xxx –save-dev 安装并写入package.json的”devDependencies”中。
+npm uninstall xxx 删除xxx模块； 
+npm uninstall -g xxx 删除全局模块xxx；
+npm update xxx 升级模块xxx
+npm update xxx -g 升级全局模块xxx
+### 查看全局安装过的包
+npm list -g --depth 0
+
+
+终端使用ss代理
+export ALL_PROXY=socks5://127.0.0.1:1086
