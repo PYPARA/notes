@@ -66,3 +66,15 @@
 - ✦ Prefer APIs that accept functions to call rather than strings to eval.
 
 ## Item 28: Avoid Relying on the toString Method of Functions
+
+### Things to Remember
+- ✦ JavaScript engines are not required to produce accurate reflections of function source code via toString.
+- ✦ Never rely on precise details of function source, since different engines may produce different results from toString.
+- ✦ The results of toString do not expose the values of local variables stored in a closure.
+- ✦ In general, avoid using toString on functions.
+
+## Item 29: Avoid Nonstandard Stack Inspection Properties
+
+### Things to Remember
+- ✦ Avoid the nonstandard arguments.caller and arguments.callee, because they are not reliably portable.
+- ✦ Avoid the nonstandard caller property of functions, because it does not reliably contain complete information about the stack.
