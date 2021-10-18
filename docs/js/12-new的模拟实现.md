@@ -9,9 +9,9 @@ function objectFactory() {
 
   Constructor = [].shift.call(arguments);//取得外部传入的构造器
 
-  var F=function(){};
+  var F=function() {};
   F.prototype= Constructor.prototype;
-  obj=new F();//指向正确的原型
+  obj = new F();//指向正确的原型
 
   var ret = Constructor.apply(obj, arguments);//借用外部传入的构造器给obj设置属性
 
