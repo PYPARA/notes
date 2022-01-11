@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加解密测试</title>
+</head>
+
+<body>
+  <script src="./jsencrypt.min.js"></script>
+  <script src="./forge/forge.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script> -->
+
+  <script>
+    // console.log(forge);
+    var time0 = new Date().valueOf()
+    var publicKey = forge.pki.publicKeyFromPem(`-----BEGIN PUBLIC KEY-----
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtN
+    FOb9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeucF+S76
+    xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4
+    gwQco1KRMDSmXSMkDwIDAQAB
+    -----END PUBLIC KEY-----`)
+    var publicKey1 = forge.pki.publicKeyFromPem(`-----BEGIN RSA PUBLIC KEY-----
+    MIIBCgKCAQEAi/tvygy7w83D7pDBvLz1r/g9EJLIW3mCDEs9yMmAeogTjDp8sVkFj8JXCoTX
+    cKKs5Co4EpQcXw8gdCSEPrTWbJQefcUFYApNjccWczizYUIQzbCn8RMgR3j+74D/N1rnw5ec
+    CMHqYkPE5gxYrD2bXguTKapjFYyZx54D4g0R6Tsv89orfwgAhwwxSV9cqhO4ifNABx6BQ932
+    8zBhmUiiadcrCMSZxsxP6IxnHOjR6hmtJFXOiKFELgELVss02YoQqfp2SsnGl8i0EJJ6p8M/
+    xZWtIceSg5drnPFfs604BInDnMdxEMMWUctC0nNgZrf4SmNN/ma/983s2ePK7yrK8QIDAQAB
+    -----END RSA PUBLIC KEY-----`)
+    var publicKey2 = forge.pki.publicKeyFromPem(`-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo+nenkgLY2B+uLCld+ok
+    6SA2iX7YGk2iH8iMk4VUNWJIqauOKFw9RfEntzBHjPnFD921LA4hFjVMB68Ibt1u
+    txCJgf8eAQoQGr2vj43cq3l1eXYzw+yB0UMhuvRKX6dEOL7WmZT9QcItu7mIAS0k
+    0rs7sApsgmnaDfXY31BnxLGWREUUX5xjqYiJZL1OAhSBybP/J1Fj7Asj4gOGFLbN
+    7wp9sCVHuB2ZdMV/KEiBY9Zg0EuaI0Y4YkD2FSm6HZ6JRzzGtrVgzB8s+fMEJvAM
+    Cjtg/G3LUB7NFMjheugfVcmNxCm9lr8tqNs8ZhKBKPLvV6pu1JXCcEPyTMYF+jkg
+    bQIDAQAB
+    -----END PUBLIC KEY-----`)
+
+    var string = forge.util.encode64(publicKey2.encrypt(
+      encodeURIComponent('hhh哈哈哈「」「『'),
+      // 'RAW'
+      // 'RSA-OAEP'
+      // 'RSAES-PKCS1-V1_5'
+    ))
+    console.log(new Date().valueOf() - time0);
+    console.log(string);
+
+    var privateKey = forge.pki.privateKeyFromPem(`-----BEGIN RSA PRIVATE KEY-----
+    MIICXQIBAAKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6khyfD1Yt3YiCgQ
+    WMNW649887VGJiGr/L5i2osbl8C9+WJTeucF+S76xFxdU6jE0NQ+Z+zEdhUTooNR
+    aY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4gwQco1KRMDSmXSMkDwIDAQAB
+    AoGAfY9LpnuWK5Bs50UVep5c93SJdUi82u7yMx4iHFMc/Z2hfenfYEzu+57fI4fv
+    xTQ//5DbzRR/XKb8ulNv6+CHyPF31xk7YOBfkGI8qjLoq06V+FyBfDSwL8KbLyeH
+    m7KUZnLNQbk8yGLzB3iYKkRHlmUanQGaNMIJziWOkN+N9dECQQD0ONYRNZeuM8zd
+    8XJTSdcIX4a3gy3GGCJxOzv16XHxD03GW6UNLmfPwenKu+cdrQeaqEixrCejXdAF
+    z/7+BSMpAkEA8EaSOeP5Xr3ZrbiKzi6TGMwHMvC7HdJxaBJbVRfApFrE0/mPwmP5
+    rN7QwjrMY+0+AbXcm8mRQyQ1+IGEembsdwJBAN6az8Rv7QnD/YBvi52POIlRSSIM
+    V7SwWvSK4WSMnGb1ZBbhgdg57DXaspcwHsFV7hByQ5BvMtIduHcT14ECfcECQATe
+    aTgjFnqE/lQ22Rk0eGaYO80cc643BXVGafNfd9fcvwBMnk0iGX0XRsOozVt5Azil
+    psLBYuApa66NcVHJpCECQQDTjI2AQhFc1yRnCU/YgDnSpJVm1nASoRUnU8Jfm3Oz
+    uku7JUXcVpt08DFSceCEX9unCuMcT72rAQlLpdZir876
+    -----END RSA PRIVATE KEY-----`)
+    var privateKey1 = forge.pki.privateKeyFromPem(`-----BEGIN RSA PRIVATE KEY-----
+    MIIEogIBAAKCAQEAi/tvygy7w83D7pDBvLz1r/g9EJLIW3mCDEs9yMmAeogTjDp8sVkFj8JX
+    CoTXcKKs5Co4EpQcXw8gdCSEPrTWbJQefcUFYApNjccWczizYUIQzbCn8RMgR3j+74D/N1rn
+    w5ecCMHqYkPE5gxYrD2bXguTKapjFYyZx54D4g0R6Tsv89orfwgAhwwxSV9cqhO4ifNABx6B
+    Q9328zBhmUiiadcrCMSZxsxP6IxnHOjR6hmtJFXOiKFELgELVss02YoQqfp2SsnGl8i0EJJ6
+    p8M/xZWtIceSg5drnPFfs604BInDnMdxEMMWUctC0nNgZrf4SmNN/ma/983s2ePK7yrK8QID
+    AQABAoIBAAjtnI+yiDdQ5HJO4Ux8cN8sYhiwg/7xnQ3TrrkjwQIPs89524IkP2qP5qVRG7yf
+    Y4+Z8cGdmMGnYVaHDbhCKHr8Z4V2D4W0ooWscQ4gS7CkWhYEcnG52pE0cm4sOBr7vVSIUvds
+    BtsFn4VcvDsgIsy4yEYcC/3P3e8RcQX193J8r8hgvqG9xIGs6K/beRj1/Bay3GsarkRilEgY
+    tkuAuw6LjleOPa9xNrXlHxrnxS93YWrfbUeVS7VyCL5qqJRhlNPopurDhYWaMa+XQ6CvHOzc
+    m0UfpsBihKI/iAlJixYpNOqa4a0OapdaaIbopy9KEpCNqBkOyoypsm8AvP1q1BECgYEAvWbp
+    W/4ghRZxhQ69PcXMkh+QIPkibr0xkfFjre3Xmj6TmJcRaxLkeQdj61cSuJMWmuHRa7r4aGGq
+    XTv8IdQ8E9RD37Ascpt3DRhfQTSUzPz0ooJMoYzG11X3Qf1wahOaXcckI95ZnsjnKGtF7r6s
+    mKu+V3svWNvsYsJS39QHlYMCgYEAvTP7Z7n1jZop1s7VgdXha7OzCZ8Qz7RunqhSjqpGvUAs
+    AAC68hcwOG9BKjGx1kNhFogJ43n3DKAi2ycYI34wwu3gD6htyQPuPEutwqPDik2OqQQ7QVBl
+    88Vf4t4SZpRQ9GwQyeS/uFhTFar2r6OOz+ckzPIDfezUnGwiMIwVJ3sCgYBi1omA0CT4TrX+
+    0ao/yjDvMDlue5RUZbawil+SLEQO4gjz4CHe1oUUA59I+K90Uo3BVYaLyY5IKm9VKDBzFuYj
+    Euo4mR8Yz7hYxRcwV9gvAPJIu+Zxh51cUigt76vyLzinJ3zcmvP5wK2gkhp0dFxtb3JtBIO4
+    w0ugXfgRhfxPMQKBgFpli6hzYK7XCUZoa/oshhc/NDtUlGOogXGsWkVvdXzWPC+EKc2g5pkQ
+    DsJqG92TM7/gH1lf3HlbyUuL0iyjDgkUPgk9H7b6+cg1ID/unm5lv9NhAi6iixN9KeLq1z/L
+    fSJKv3q2oCMjkA66MEKakpEijqKcvq5biPlzcKJhS3ohAoGAExH4zlq/k2zsimARohB6HyDz
+    4XL0oaXogoQZ6ZVUzV/RrA3sHIeHmU6sx+G/jjmUVAz5nCqKatJOVCLbchIp7jKWVVLXw8c1
+    entqHY3aHvhsXR0nLxStrXHMSfwE3b0WGN5r5rNYxbdYDgDhL2lr5l/d2L8YKkHMFZ/qls5J
+    CFU=
+    -----END RSA PRIVATE KEY-----`)
+    var privateKey2 = forge.pki.privateKeyFromPem(`
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEowIBAAKCAQEAo+nenkgLY2B+uLCld+ok6SA2iX7YGk2iH8iMk4VUNWJIqauO
+    KFw9RfEntzBHjPnFD921LA4hFjVMB68Ibt1utxCJgf8eAQoQGr2vj43cq3l1eXYz
+    w+yB0UMhuvRKX6dEOL7WmZT9QcItu7mIAS0k0rs7sApsgmnaDfXY31BnxLGWREUU
+    X5xjqYiJZL1OAhSBybP/J1Fj7Asj4gOGFLbN7wp9sCVHuB2ZdMV/KEiBY9Zg0Eua
+    I0Y4YkD2FSm6HZ6JRzzGtrVgzB8s+fMEJvAMCjtg/G3LUB7NFMjheugfVcmNxCm9
+    lr8tqNs8ZhKBKPLvV6pu1JXCcEPyTMYF+jkgbQIDAQABAoIBACYsjmMwhi5zx699
+    vFusFUKR9QGan/uoPuzGCS9GKvFv3VpekPIHYWHLoyM/xDop5WInkU0cUUpZyUY0
+    1nLzcRiDanLzFmrJjCyeJqf5Mv5ggCJ0i+PCTg2NY+qlgDi8vN+2WkZUc5MABSSm
+    Ne2INP47CtCZ7OGGg3ki24pOsIwXK7nxaqV5AYB61q54AQPhgZ8LnecM91gR8gAE
+    RBuBEneQ8fTeGFF0w4AxUQ2Rqfds3DEKJmC0GA4RZnUvZ8CJJP2tQNwrld1PJV/c
+    97uiUfbh2FaEbbphACY1S5InRZFT/vfrgW0/Iez6Jpz38/eCjbaYXCVDQ9QXM/vP
+    //esWSECgYEA5yp/ExwnLKd9MidSqd/mb8bBHfDEHy/u6F4lDvP9YiJ0mZobdJR2
+    vzVrxDuMDNVGLNZ7toT5oEU6bdpnEOtJt5GoFAOKIqcAyfRPCKZjsMBQPGYBo+Iq
+    MGmubZI+NtwFvAix6x1qcemiuwfEEONyQQRvsVfqLb/aw2HV2/yDoXUCgYEAtYXN
+    pLKMbbZG3S4+Hlt3ZEWVDgSsH5mFNf9gvGcIL4ZI4RZBbDruRVuh1Nce/DqV+q6u
+    kl/Y0SvHGy5eJNQN6aFILCjr+dlKJtvN0e34w7pupzCMuObBmQIpkY4lClRV+Hp3
+    YVjVRo4XsDIIt0uu2iY+gGhVwQNZzTNLnKMdbBkCgYEAoTeIDEHUKFZe//1gr0yR
+    n17UDBeAD+gUDEasPbN4AVraSs2pXDK2Zj/Rere0wrZzDI5BFVfD6DyftUFeI/SU
+    IswYlmyph+VErZQPEo9Ic1qMGrNhbXQrzDvIBG67qPLlpO/DdZ+8PtmcPif6W3Tk
+    l+eKJfqUPXfSD/VJevSusIkCgYABNdwyLfKbxKxiSy2k3C1GoOQmjMdtCoQF4ScO
+    +ozmbDnOLmzPQPFXyw2gMrMFMYrQehu15Ce49VbFiqCcFEHnfejSSo+QQe+ppKuR
+    q8mN3I9iVAOMNBW0ZHxMeSssD3XnS0HCh2ocp1PnG95NApcu4zRlfMydld0ibiYh
+    7ECE+QKBgHUOF1339xkqgb439u4nnb7uH77OJ4sIreNLZoJVEhbTfGBBGLy3FPZU
+    XIbuqAHBZKQIao47+2OrDkOUAc6rgUlabxY6Sb620MvvlZ8LxSy5duyVLxD4WmuX
+    T4auwD3v9Wrezi/Yz/B5hJvIh5tx4BGPdaag0v+cDAH+doyef9lB
+    -----END RSA PRIVATE KEY-----`)
+    
+    var result = decodeURIComponent(
+      privateKey2.decrypt(
+        forge.util.decode64(string),
+        // 'RAW'
+        // 'RSA-OAEP'
+        // 'RSAES-PKCS1-V1_5'
+      )
+    )
+    console.log(result);
+
+    console.log(new Date().valueOf() - time0);
+
+    var time1 = new Date().valueOf()
+    forge.rsa.generateKeyPair({ bits: 2048, workers: 2 }, function (err, keypair) {
+      console.log(new Date().valueOf() - time1);
+      // console.log(err);
+      // console.log(keypair)
+      // console.log(forge.pki.publicKeyToPem(keypair.publicKey));
+      // console.log(forge.pki.privateKeyToPem(keypair.privateKey));
+      // console.log(forge.pki.publicKeyToAsn1(keypair.publicKey));
+      // console.log(forge.pki.privateKeyToAsn1(keypair.privateKey));
+
+      // console.log(forge.pki.publicKeyToRSAPublicKeyPem(keypair.publicKey, 72).replace(/\r/g, ''));
+      // console.log(forge.pki.privateKeyToPem(keypair.privateKey, 72).replace(/\r/g, ''));
+      // console.log(new Date().valueOf() - time1);
+    });
+
+    var time2 = new Date().valueOf();
+    forge.rsa.generateKeyPair(1024, function (err, keypair) {
+      console.log(new Date().valueOf() - time2);
+      console.log(keypair);
+      // console.log(err);
+      // console.log(keypair)
+      // console.log(forge.pki.publicKeyToPem(keypair.publicKey));
+      // console.log(forge.pki.privateKeyToPem(keypair.privateKey));
+      // console.log(forge.pki.publicKeyToAsn1(keypair.publicKey));
+      // console.log(forge.pki.privateKeyToAsn1(keypair.privateKey));
+      // console.log(new Date().valueOf() - time1);
+    });
+
+
+    // var keypair2 = forge.rsa.generateKeyPair({bits: 2048, e: 0x10001});
+    // console.log(keypair2);
+  </script>
+</body>
+
+</html>
