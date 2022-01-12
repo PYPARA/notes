@@ -9,8 +9,8 @@
 </head>
 
 <body>
-  <script src="./jsencrypt.min.js"></script>
-  <script src="./forge/forge.min.js"></script>
+  <!-- <script src="./jsencrypt.min.js"></script> -->
+  <script src="./forge/forge.rsa.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script>eruda.init();</script> -->
 
@@ -133,34 +133,34 @@
     var time1 = new Date().valueOf()
     forge.rsa.generateKeyPair({ bits: 2048, workers: 2 }, function (err, keypair) {
       console.log(new Date().valueOf() - time1);
-      // console.log(err);
-      // console.log(keypair)
-      // console.log(forge.pki.publicKeyToPem(keypair.publicKey));
-      // console.log(forge.pki.privateKeyToPem(keypair.privateKey));
-      // console.log(forge.pki.publicKeyToAsn1(keypair.publicKey));
-      // console.log(forge.pki.privateKeyToAsn1(keypair.privateKey));
+      console.log(err);
+      console.log(keypair)
+      console.log(forge.pki.publicKeyToPem(keypair.publicKey));
+      console.log(forge.pki.privateKeyToPem(keypair.privateKey));
+      console.log(forge.pki.publicKeyToAsn1(keypair.publicKey));
+      console.log(forge.pki.privateKeyToAsn1(keypair.privateKey));
 
-      // console.log(forge.pki.publicKeyToRSAPublicKeyPem(keypair.publicKey, 72).replace(/\r/g, ''));
-      // console.log(forge.pki.privateKeyToPem(keypair.privateKey, 72).replace(/\r/g, ''));
-      // console.log(new Date().valueOf() - time1);
+      console.log(forge.pki.publicKeyToRSAPublicKeyPem(keypair.publicKey, 72).replace(/\r/g, ''));
+      console.log(forge.pki.privateKeyToPem(keypair.privateKey, 72).replace(/\r/g, ''));
+      console.log(new Date().valueOf() - time1);
     });
 
     var time2 = new Date().valueOf();
     forge.rsa.generateKeyPair(1024, function (err, keypair) {
       console.log(new Date().valueOf() - time2);
       console.log(keypair);
-      // console.log(err);
-      // console.log(keypair)
-      // console.log(forge.pki.publicKeyToPem(keypair.publicKey));
-      // console.log(forge.pki.privateKeyToPem(keypair.privateKey));
-      // console.log(forge.pki.publicKeyToAsn1(keypair.publicKey));
-      // console.log(forge.pki.privateKeyToAsn1(keypair.privateKey));
-      // console.log(new Date().valueOf() - time1);
+      console.log(err);
+      console.log(keypair)
+      console.log(forge.pki.publicKeyToPem(keypair.publicKey));
+      console.log(forge.pki.privateKeyToPem(keypair.privateKey));
+      console.log(forge.pki.publicKeyToAsn1(keypair.publicKey));
+      console.log(forge.pki.privateKeyToAsn1(keypair.privateKey));
+      console.log(new Date().valueOf() - time1);
     });
 
 
-    // var keypair2 = forge.rsa.generateKeyPair({bits: 2048, e: 0x10001});
-    // console.log(keypair2);
+    var keypair2 = forge.rsa.generateKeyPair({bits: 2048, e: 0x10001});
+    console.log(keypair2);
   </script>
 </body>
 

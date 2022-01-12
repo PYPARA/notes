@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forge-test</title>
+  <style>
+    #keys-container,
+    #crypt-container {
+      display: flex;
+    }
+
+    .keys-buttons {
+      width: 100px;
+      text-align: center;
+    }
+
+    .keys-buttons button {
+      width: 80%;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="keys-container">
+      <textarea v-model="publicKeyString" rows="20"></textarea>
+      <div class="keys-buttons">
+        <button @click="generateKeyPair">生成密钥</button>
+        <div>耗时：{{ timeCost }} ms</div>
+      </div>
+      <textarea v-model="privateKeyString" rows="20"></textarea>
+    </div>
+
+    <div id="crypt-container">
+      <textarea v-model="rawData" rows="10"></textarea>
+      <div class="keys-buttons">
+        <button @click="encrypt">加密</button>
+        <button @click="decrypt">解密</button>
+        <div>耗时：{{ timeCost2 }} ms</div>
+      </div>
+      <textarea v-model="encryptedData" rows="10"></textarea>
+    </div>
+
+    <div>
+      <h4>加密: 字符转义（可能包含中文等） =>>>  {{ cryptoAlgorithm }} 算法加密 =>>> 加密结果 Base64</h4>
+      <h4>解密: 解 Base64 =>>> {{ cryptoAlgorithm }} 算法解密 =>>> 字符解转义（可能包含中文等）</h4>
+      <h4>生成密钥：<br>
+        算法: PRIMEINC <br>
+        位数: 2048位 <br>
+        优先调用浏览器 native standard 方法 (部分浏览器支持，需要 https)<br>
+        如 native standard 调用失败，使用 pure JavaScript 方法，使用 webworker 生成素数，会使用 workerScript: './prime.worker.min.js'
+        所有，prime.worker.min.js 必须加入文件中
+      </h4>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="./forge.rsa.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script>
+
+  <!-- , workerScript: './prime.worker.min.js' -->
+
+  <script>
+    const App = {
+      data() {
+        return {
+          keypair: null,
+          publicKeyString: '',
+          privateKeyString: '',
+          timeCost: '',
+
+
+          rawData: '',
+          encryptedData: '',
+          timeCost2: '',
+
+          // 'RAW'
+          // 'RSA-OAEP'
+          // 'RSAES-PKCS1-V1_5'
+          cryptoAlgorithm: 'RSAES-PKCS1-V1_5'
+        }
+      },
+      methods: {
+        generateKeyPair() {
+          let time0 = new Date().valueOf()
+          forge.rsa.generateKeyPair({ bits: 2048, workers: 2, workerScript: './prime.worker.min.js' }, (err, keypair) => {
+            this.keypair = keypair
+            this.publicKeyString = forge.pki.publicKeyToPem(keypair.publicKey)
+            this.privateKeyString = forge.pki.privateKeyToPem(keypair.privateKey)
+            this.timeCost = new Date().valueOf() - time0
+          });
+        },
+        encrypt() {
+          if (!this.rawData || !this.publicKeyString) {
+            return
+          }
+          // let publicKey = this.keypair.publicKey
+          let publicKey = forge.pki.publicKeyFromPem(this.publicKeyString)
+          let time0 = new Date().valueOf()
+          let string = forge.util.encode64(publicKey.encrypt(
+            encodeURIComponent(this.rawData),
+            this.cryptoAlgorithm
+          ))
+          this.timeCost2 = new Date().valueOf() - time0
+          this.encryptedData = string
+        },
+        decrypt() {
+          if (!this.encryptedData || !this.privateKeyString) {
+            return
+          }
+          // let privateKey = this.keypair.privateKey
+          let privateKey = forge.pki.privateKeyFromPem(this.privateKeyString)
+          let time0 = new Date().valueOf()
+          let string = decodeURIComponent(
+            this.keypair.privateKey.decrypt(
+              forge.util.decode64(this.encryptedData),
+              this.cryptoAlgorithm
+            )
+          )
+          this.timeCost2 = new Date().valueOf() - time0
+          this.rawData = string
+        }
+      }
+    }
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+
+</html>
