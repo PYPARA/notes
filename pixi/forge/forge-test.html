@@ -81,6 +81,7 @@
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./forge.rsa.min.js"></script>
   <script src="./jsencrypt.min.js"></script>
+  <script src="./jsencryptLong.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script>eruda.init();</script> -->
 
@@ -103,7 +104,7 @@
           // 'RAW'
           // 'RSA-OAEP'
           // 'RSAES-PKCS1-V1_5'
-          cryptoAlgorithm: 'RAW',
+          cryptoAlgorithm: 'RSAES-PKCS1-V1_5',
 
           generateTestTimes: 100,
           generateperformance: {}
@@ -146,19 +147,19 @@
         },
         _encrypt(rawData, publicKeyString) {
 
-          // var encrypt = new JSEncrypt();
-          // encrypt.setPublicKey(publicKeyString);
-          // var encrypted = encrypt.encrypt(rawData);
-          // return encrypted
-          
-
-          let publicKey = forge.pki.publicKeyFromPem(publicKeyString)
-
-          let encrypted = forge.util.encode64(publicKey.encrypt(
-            forge.util.encodeUtf8(rawData), 
-            this.cryptoAlgorithm
-          ))
+          var encrypt = new JSEncrypt();
+          encrypt.setPublicKey(publicKeyString);
+          var encrypted = encrypt.encryptLong(rawData);
           return encrypted
+
+
+          // let publicKey = forge.pki.publicKeyFromPem(publicKeyString)
+          // console.log(rawData);
+          // let encrypted = forge.util.encode64(publicKey.encrypt(
+          //   forge.util.encodeUtf8(rawData),
+          //   this.cryptoAlgorithm
+          // ))
+          // return encrypted
         },
         decrypt() {
           if (!this.encryptedData || !this.privateKeyString) {
@@ -171,19 +172,18 @@
         },
         _decrypt(encryptedData, privateKeyString) {
 
-          // var decrypt = new JSEncrypt();
-          // decrypt.setPrivateKey(privateKeyString);
-          // var uncrypted = decrypt.decrypt(encryptedData);
-          // return uncrypted
+          var decrypt = new JSEncrypt();
+          decrypt.setPrivateKey(privateKeyString);
+          var uncrypted = decrypt.decryptLong(encryptedData);
+          return uncrypted
 
-          let privateKey = forge.pki.privateKeyFromPem(privateKeyString)
-          let decryptRaw = privateKey.decrypt(
-            forge.util.decode64(encryptedData), 
-            this.cryptoAlgorithm
-          )
-          console.log(decryptRaw);
-          let decrypted = forge.util.decodeUtf8(decryptRaw)
-          return decrypted
+          // let privateKey = forge.pki.privateKeyFromPem(privateKeyString)
+          // let decryptRaw = privateKey.decrypt(
+          //   forge.util.decode64(encryptedData),
+          //   this.cryptoAlgorithm
+          // )
+          // let decrypted = forge.util.decodeUtf8(decryptRaw)
+          // return decrypted
         },
 
         async generateKeyPairTest() {
