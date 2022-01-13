@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>forge-test</title>
   <style>
+    #app {
+      padding-bottom: 200px;
+    }
+
     #keys-container,
     #crypt-container {
       display: flex;
@@ -50,7 +54,7 @@
     </div>
 
     <div>
-      <h4>加密: 字符转义（可能包含中文等） =>>>  {{ cryptoAlgorithm }} 算法加密 =>>> 加密结果 Base64</h4>
+      <h4>加密: 字符转义（可能包含中文等） =>>> {{ cryptoAlgorithm }} 算法加密 =>>> 加密结果 Base64</h4>
       <h4>解密: 解 Base64 =>>> {{ cryptoAlgorithm }} 算法解密 =>>> 字符解转义（可能包含中文等）</h4>
       <h4>生成密钥：<br>
         算法: PRIMEINC <br>
@@ -61,12 +65,24 @@
       </h4>
     </div>
 
+    <h2>性能测试</h2>
+    <div>
+      <button @click="generateKeyPairTest">生成密钥测试</button>
+      <input type="text" v-model="generateTestTimes">次
+      <div>成功次数：{{ generateperformance.successTimes}}</div>
+      <div>min: {{generateperformance.min}}ms</div>
+      <div>max: {{generateperformance.max}}ms</div>
+      <div>average: {{generateperformance.average}}ms</div>
+    </div>
+
+
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./forge.rsa.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-  <script>eruda.init();</script>
+  <script src="./jsencrypt.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+  <script>eruda.init();</script> -->
 
   <!-- , workerScript: './prime.worker.min.js' -->
 
@@ -87,49 +103,135 @@
           // 'RAW'
           // 'RSA-OAEP'
           // 'RSAES-PKCS1-V1_5'
-          cryptoAlgorithm: 'RSAES-PKCS1-V1_5'
+          cryptoAlgorithm: 'RAW',
+
+          generateTestTimes: 100,
+          generateperformance: {}
         }
       },
       methods: {
-        generateKeyPair() {
+        async generateKeyPair() {
           let time0 = new Date().valueOf()
-          forge.rsa.generateKeyPair({ bits: 2048, workers: 2, workerScript: './prime.worker.min.js' }, (err, keypair) => {
-            this.keypair = keypair
-            this.publicKeyString = forge.pki.publicKeyToPem(keypair.publicKey)
-            this.privateKeyString = forge.pki.privateKeyToPem(keypair.privateKey)
-            this.timeCost = new Date().valueOf() - time0
-          });
+
+          let keypair = await this._generateKeyPair()
+          this.keypair = keypair
+          this.publicKeyString = forge.pki.publicKeyToPem(keypair.publicKey)
+          this.privateKeyString = forge.pki.privateKeyToPem(keypair.privateKey)
+          this.timeCost = new Date().valueOf() - time0
+        },
+        _generateKeyPair() {
+          return new Promise((resolve, reject) => {
+            console.log('start');
+            try {
+              forge.rsa.generateKeyPair({ bits: 1024, workers: 2, workerScript: './prime.worker.min.js' }, (err, keypair) => {
+                if (err) {
+                  reject(err)
+                }
+                resolve(keypair)
+              });
+            } catch (error) {
+              reject(error)
+            }
+          })
+
         },
         encrypt() {
           if (!this.rawData || !this.publicKeyString) {
             return
           }
-          // let publicKey = this.keypair.publicKey
-          let publicKey = forge.pki.publicKeyFromPem(this.publicKeyString)
           let time0 = new Date().valueOf()
-          let string = forge.util.encode64(publicKey.encrypt(
-            encodeURIComponent(this.rawData),
+          let encrypted = this._encrypt(this.rawData, this.publicKeyString)
+          this.timeCost2 = new Date().valueOf() - time0
+          this.encryptedData = encrypted
+        },
+        _encrypt(rawData, publicKeyString) {
+
+          // var encrypt = new JSEncrypt();
+          // encrypt.setPublicKey(publicKeyString);
+          // var encrypted = encrypt.encrypt(rawData);
+          // return encrypted
+          
+
+          let publicKey = forge.pki.publicKeyFromPem(publicKeyString)
+
+          let encrypted = forge.util.encode64(publicKey.encrypt(
+            forge.util.encodeUtf8(rawData), 
             this.cryptoAlgorithm
           ))
-          this.timeCost2 = new Date().valueOf() - time0
-          this.encryptedData = string
+          return encrypted
         },
         decrypt() {
           if (!this.encryptedData || !this.privateKeyString) {
             return
           }
-          // let privateKey = this.keypair.privateKey
-          let privateKey = forge.pki.privateKeyFromPem(this.privateKeyString)
           let time0 = new Date().valueOf()
-          let string = decodeURIComponent(
-            this.keypair.privateKey.decrypt(
-              forge.util.decode64(this.encryptedData),
-              this.cryptoAlgorithm
-            )
-          )
+          let decrypted = this._decrypt(this.encryptedData, this.privateKeyString)
           this.timeCost2 = new Date().valueOf() - time0
-          this.rawData = string
+          this.rawData = decrypted
+        },
+        _decrypt(encryptedData, privateKeyString) {
+
+          // var decrypt = new JSEncrypt();
+          // decrypt.setPrivateKey(privateKeyString);
+          // var uncrypted = decrypt.decrypt(encryptedData);
+          // return uncrypted
+
+          let privateKey = forge.pki.privateKeyFromPem(privateKeyString)
+          let decryptRaw = privateKey.decrypt(
+            forge.util.decode64(encryptedData), 
+            this.cryptoAlgorithm
+          )
+          console.log(decryptRaw);
+          let decrypted = forge.util.decodeUtf8(decryptRaw)
+          return decrypted
+        },
+
+        async generateKeyPairTest() {
+          let min = 0
+          max = 0
+          times = 0
+          amountTime = 0
+          successTimes = 0
+          average = 0
+
+          for (let i = 0; i < this.generateTestTimes; ++i) {
+            let time0 = new Date().valueOf()
+            times++
+            try {
+              let keypair = await this._generateKeyPair()
+              successTimes++
+              let timeCost = new Date().valueOf() - time0
+              if (i == 0) {
+                min = timeCost
+                max = timeCost
+                amountTime = timeCost
+              }
+              if (timeCost < min) {
+                min = timeCost
+              }
+              if (timeCost > max) {
+                max = timeCost
+              }
+              amountTime += timeCost
+
+              this.generateperformance = {
+                min,
+                max,
+                successTimes,
+                average: amountTime / successTimes
+              }
+
+            } catch (error) {
+              console.log('generate error');
+            }
+          }
+
+
         }
+      }
+      ,
+      created() {
+        window.vueThis = this
       }
     }
     Vue.createApp(App).mount('#app')
