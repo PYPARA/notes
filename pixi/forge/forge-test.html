@@ -92,8 +92,8 @@
       data() {
         return {
           keypair: null,
-          publicKeyString: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmcngtssL5ZKlnXGn8dmfm57VnBjkjLlheRyPbMwO/+iA+ZH3oxUG0da2GPpUgqTp6gK48zNS2SCDTVSVD9d5Mz+rC/s9kECbhxwEG3fZ76majVYkbiVH896ZHG75CTuPcSvyeHO3rmUGo011MaJlxFo8TcCzXJI11h/Li+eLiWWnPNDvrkNOu77Jd48QolO7D6gMLQ/nvwqTNu00mEpmGAdrklVEpeYFpHqgC3L4RoCKP0XRkcO7PNGGsgYjsede6Nz6fF7ajWMSBTRCZyxWQ2n56IKRvyZA3RAMTPR2lAQgl0AtdpY3q95SHh00Rf9th3iVEjq7ROsEKo8USF8tfQIDAQAB',
-          privateKeyString: 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZyeC2ywvlkqWdcafx2Z+bntWcGOSMuWF5HI9szA7/6ID5kfejFQbR1rYY+lSCpOnqArjzM1LZIINNVJUP13kzP6sL+z2QQJuHHAQbd9nvqZqNViRuJUfz3pkcbvkJO49xK/J4c7euZQajTXUxomXEWjxNwLNckjXWH8uL54uJZac80O+uQ067vsl3jxCiU7sPqAwtD+e/CpM27TSYSmYYB2uSVUSl5gWkeqALcvhGgIo/RdGRw7s80YayBiOx517o3Pp8XtqNYxIFNEJnLFZDafnogpG/JkDdEAxM9HaUBCCXQC12ljer3lIeHTRF/22HeJUSOrtE6wQqjxRIXy19AgMBAAECggEAJwFK21HYbJurIamn/PFDSAcbCoJNxVtnW35g6ik/TKy9uY7KDjTRC/u3J9KmCJSnN1EFc7l6s9NJOh3PyLrP5K2rRlisnp+kUrpKWGUng1+y8VH932nZPAMjNlD3HN5cXUnWL7K5zaOV8Wk95h7YTNrOHLJZS4tR2EMsLwnFHE2lUvQZshBklxOKuBJFUwdREjaHBP9CyQutVny0yWeCZgdNvVvcOwz/2XJQE318DxaTy3oEbxRIMHQUViV5gTiXcZW/pfzIVuvFpZJMzJuM3S4jgarXgjVZiK+es8Djg87qxH/MtWD3Qfyx6W852c/nhjjEai852k2BNmR0Lm07AQKBgQDL5+l4WwJ/J5/+39KJc9qOQDU6uKRT1oiNlgjNarGq2r+zOxjhFwQZPC+YSaYIf/PXePkaD0m7CW5Z+ji3ujLeUG7TOKxdwXbtgiVoJZ6BvUlDLNximDGk0MkgOwU3X0M6tQ4g3JqdPDEe7+tTQzD3H/tEAdllumOP5GDdHtujYQKBgQDBFCKguKdfjtH5FGjwcdQiKO+kVhsvu85oCkRdOijUKm7/NQ0dAZpi1hoH4h6CO57L8ICHMcNKk9tapB9cpeRb9+4+ADPCwPR7OzJM82cO0mkHEazhi1vNVNxis0jc36OwNCcA2Pqjej4Yv/c97SARleeLe1ULGT9Kka7Gx+jbnQKBgC9dDD83rKnKk4CJjwb8kTzPr02XjBwpTgjNW/gTG3fbXgIM7SeDyCDweQG/wcBhsEtRv1MNUAwREb/2vmv25U/8kPGhTXBtuulKfNPnQR1T0Yu4BO0l+woUsVM6QmjtSNl/Kuv5MjTpwWM1SY1KozoUBLJ0V4IovG21F8blHxGhAoGAVsA7RsdwvGipQya+d7pNPAP0mHvvvyS8+tYSHWkySxG9yYEGoU/FFD9qdrxMROuQz8UBmrzrKCkC19kCFlibIA9nxgfFOe4EaxIP6a87UNeNRRXV/Yjl+H32f4paZJM/Mr5b/+99vdIA8JHf/rz6OayG2o7RiSkQ3OpUAxBzOakCgYBNJus0MoSbKQ0V2/wp4qRiZ2YDIF6Wa3LECs8shgpw5xwWHkOIHFb779knt9OPAf5kQJvO/YDCM9lPDb6l2oFb33eO8zI0C3AiPxLc/fHL9YZ7zMR6Q8528Ml+QFLmS4lUues5IHGagVW3mAw9yh8vc12GBlTeHimVFdpXj4H6LQ==',
+          publicKeyString: '',
+          privateKeyString: '',
           timeCost: '',
 
 
@@ -159,7 +159,6 @@
           encrypt.setPublicKey(publicKeyString);
           var encrypted = encrypt.encrypt(rawData);
           return encrypted
-
 
           // let publicKey = forge.pki.publicKeyFromPem(publicKeyString)
           // console.log(rawData);

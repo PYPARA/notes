@@ -57,9 +57,14 @@ https的站点访问http的图片默认会被阻止
 
 ## 组件样式穿透到子组件
 ```scss
-::v-deep {
-  color: '#ffffff'
+.xxx {
+  ::v-deep {
+    .aaa {
+      color: '#ffffff'
+    }
+  }
 }
+
 ```
 
 ## vue 子组件值同步到父组件的绑定上
@@ -100,3 +105,26 @@ npm list -g --depth 0
 
 终端使用ss代理
 export ALL_PROXY=socks5://127.0.0.1:1086
+
+flex 一行3个，并且向左对齐，类似布局
+```css
+.company {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  flex-wrap: wrap;
+  // gap: 10px;
+  justify-content: space-between;
+  align-items:flex-start; 
+  img {
+    margin-top: 10px;
+    width: 32%;
+    &:last-child:nth-child(3n - 1) {
+      margin-right: 34%;
+    }
+  }
+}
+```
+
+css3画网格
+http://www.alloyteam.com/2012/07/css3-grid-line/#prettyPhoto
