@@ -1,4 +1,5 @@
 const config = require('./config')
-config.base = '/notes/'
 
-module.exports = config
+module.exports = Object.assign(config, {
+  base: '/notes/'
+})

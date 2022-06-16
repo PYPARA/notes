@@ -117,7 +117,6 @@ module.exports = {
     // 可以通过 Formatter 自定义每个页面的深度
     // 页面中使用 --- xxx: xxx  --- 来配置
     sidebarDepth: 1,
-
-    editLink: true
+    
   })
 }
