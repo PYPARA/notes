@@ -1,4 +1,6 @@
-# 什么是JavaScript
+# 1. 什么是JavaScript
+
+[[toc]]
 
 ## 关键字
 ### 历史

@@ -1,5 +1,4 @@
-
-# Accustoming Yourself to JavaScript
+# Chapter1: Accustoming Yourself to JavaScript
 
 ## Item 1: Know Which JavaScript You Are Using
 

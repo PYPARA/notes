@@ -1,4 +1,4 @@
-# Objects and Prototypes
+# Chapter4: Objects and Prototypes
 
 ## Item 30: Understand the Difference between prototype, getPrototypeOf, and __proto__
 

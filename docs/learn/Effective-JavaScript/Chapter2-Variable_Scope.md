@@ -1,4 +1,4 @@
-# Variable Scope
+# Chapter2: Variable Scope
 
 ## Item 8: Minimize Use of the Global Object
 

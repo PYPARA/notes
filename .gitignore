@@ -3,3 +3,6 @@
 node_modules
 docs/.vuepress/dist/
 .vscode/settings.json
+node_modules
+.temp
+.cache

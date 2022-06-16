@@ -180,3 +180,119 @@ JavaScript 还可以显示另外两种对话框:find()和 print()。这两种对
 
 ## 12.2 location对象
 location 是最有用的 BOM 对象之一，提供了当前窗口中加载文档的信息，以及通常的导航功能。 这个对象独特的地方在于，它既是 window 的属性，也是 document 的属性。也就是说， window.location 和 document.location 指向同一个对象。
+
+### 12.2.1 查询字符串
+获取 search 中的参数
+```js
+let getQueryStringArgs = function() {
+  // 取得没有开头问号的查询字符串
+  let qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+  // 保存数据的对象 args = {};
+  // 把每个参数添加到 args 对象
+  for (let item of qs.split("&").map(kv => kv.split("="))) {
+    let name = decodeURIComponent(item[0]),
+      value = decodeURIComponent(item[1]);
+    if (name.length) {
+      args[name] = value;
+    } 
+  }
+  return args;
+}
+```
+URLSearchParams
+URLSearchParams 提供了一组标准 API 方法，通过它们可以检查和修改查询字符串。给 URLSearchParams 构造函数传入一个查询字符串，就可以创建一个实例。这个实例上暴露了 get()、 set()和 delete()等方法
+
+大多数支持 URLSearchParams 的浏览器也支持将 URLSearchParams 的实例用作可迭代对象
+
+### 12.2.2 操作地址
+```js
+location.assign("http://www.wrox.com");
+```
+这行代码会立即启动导航到新 URL 的操作，同时在浏览器历史记录中增加一条记录。如果给 location.href 或 window.location 设置一个 URL，也会以同一个 URL 值调用 assign()方法。
+```js
+window.location = "http://www.wrox.com";
+location.href = "http://www.wrox.com";
+```
+在这 3 种修改浏览器地址的方法中，设置 location.href 是最常见的。
+
+修改 location 对象的属性也会修改当前加载的页面。其中，hash、search、hostname、pathname 和 port 属性被设置为新值之后都会修改当前 URL
+除了 hash 之外，只要修改 location 的一个属性，就会导致页面重新加载新 URL。
+
+在以前面提到的方式修改 URL 之后，浏览器历史记录中就会增加相应的记录。当用户单击“后退” 按钮时，就会导航到前一个页面。如果不希望增加历史记录，可以使用 `replace()`方法。
+
+`reload()`
+```js
+location.reload(); // 重新加载，可能是从缓存加载 
+location.reload(true); // 重新加载，从服务器加载
+```
+脚本中位于 reload()调用之后的代码可能执行也可能不执行，这取决于网络延迟和系统资源等因 素。为此，最好把 reload()作为最后一行代码。
+
+## 12.3 navigator 对象
+navigator 对 象 实 现 了 NavigatorID 、 NavigatorLanguage 、 NavigatorOnLine 、 NavigatorContentUtils 、 NavigatorStorage 、 NavigatorStorageUtils 、 Navigator- ConcurrentHardware、NavigatorPlugins 和 NavigatorUserMedia 接口定义的属性和方法。
+
+navigator 对象的属性通常用于确定浏览器的类型。
+
+### 12.3.1 检测插件
+检测浏览器是否安装了某个插件是开发中常见的需求。
+- name:插件名称。
+- description:插件介绍。
+- filename:插件的文件名。
+- length:由当前插件处理的 MIME 类型数量。
+
+```js
+let hasPlugin = function(name) {
+  name = name.toLowerCase();
+  for (let plugin of window.navigator.plugins){
+    if (plugin.name.toLowerCase().indexOf(name) > -1){
+      return true;
+    }
+  }
+  return false;
+}
+```
+
+### 12.3.2 注册处理程序
+现代浏览器支持 navigator 上的(在 HTML5 中定义的)registerProtocolHandler()方法。 这个方法可以把一个网站注册为处理某种特定类型信息应用程序。随着在线 RSS 阅读器和电子邮件客户 端的流行，可以借助这个方法将 Web 应用程序注册为像桌面软件一样的默认应用程序。
+
+## 12.4 screen 对象
+window 的另一个属性 screen 对象，是为数不多的几个在编程中很少用的 JavaScript 对象。这个对 象中保存的纯粹是客户端能力信息，也就是浏览器窗口外面的客户端显示器的信息，比如像素宽度和像 素高度。每个浏览器都会在 screen 对象上暴露不同的属性。
+availHeight、availLeft、availTop、availWidth、colorDepth、height、left、pixelDepth、top、width、orientation
+
+## 12.5 history 对象
+history 对象表示当前窗口首次使用以来用户的导航历史记录。因为 history 是 window 的属性， 所以每个 window 都有自己的 history 对象。出于安全考虑，这个对象不会暴露用户访问过的 URL， 但可以通过它在不知道实际 URL 的情况下前进和后退。
+
+### 12.5.1 导航
+go()方法可以在用户历史记录中沿任何方向导航，可以前进也可以后退。这个方法只接收一个参数， 这个参数可以是一个整数，表示前进或后退多少步。负值表示在历史记录中后退(类似点击浏览器的“后 退”按钮)，而正值表示在历史记录中前进(类似点击浏览器的“前进”按钮)。
+
+history 对象还有一个 length 属性，表示历史记录中有多个条目。这个属性反映了历史记录的数 量，包括可以前进和后退的页面。
+
+### 12.5.2 历史状态管理
+hashchange 会在页面 URL 的散列变化时被触发，开发者可以在此时执行某些操作。而状态管理 API 则可以让开发者改变浏览器 URL 而不会加载新页面。为此，可以使用 history.pushState()方 法。这个方法接收 3 个参数:一个 state 对象、一个新状态的标题和一个(可选的)相对 URL。
+```js
+let stateObject = {foo:"bar"};
+history.pushState(stateObject, "My title", "baz.html");
+```
+pushState()方法执行后，状态信息就会被推到历史记录中，浏览器地址栏也会改变以反映新的相 对 URL。
+
+因为 pushState()会创建新的历史记录，所以也会相应地启用“后退”按钮。此时单击“后退” 按钮，就会触发 window 对象上的 popstate 事件。popstate 事件的事件对象有一个 state 属性，其 中包含通过 pushState()第一个参数传入的 state 对象。
+
+```js
+window.addEventListener("popstate", (event) => { 
+  let state = event.state;
+  if (state) { // 第一个页面加载时状态是null
+    processState(state);
+  }
+});
+```
+
+可以通过 history.state 获取当前的状态对象，也可以使用 replaceState()并传入与 pushState() 同样的前两个参数来更新状态。更新状态不会创建新历史记录，只会覆盖当前状态。
+传给 pushState()和 replaceState()的 state 对象应该只包含可以被序列化的信息。因此， DOM 元素之类并不适合放到状态对象里保存。
+
+## 12.6 小结
+浏览器对象模型(BOM，Browser Object Model)是以window对象为基础的，这个对象代表了浏览器窗口和页面可见的区域。window 对象也被复用为 ECMAScript 的 Global 对象，因此所有全局变量和函数都是它的属性，而且所有原生类型的构造函数和普通函数也都从一开始就存在于这个对象之上。本章讨论了 BOM 的以下内容。
+- 要引用其他 window 对象，可以使用几个不同的窗口指针。
+- 通过 location 对象可以以编程方式操纵浏览器的导航系统。通过设置这个对象上的属性，可以改变浏览器 URL 中的某一部分或全部。
+- 使用 replace()方法可以替换浏览器历史记录中当前显示的页面，并导航到新 URL。
+- navigator 对象提供关于浏览器的信息。提供的信息类型取决于浏览器，不过有些属性如 userAgent 是所有浏览器都支持的。
+
+BOM 中的另外两个对象也提供了一些功能。screen 对象中保存着客户端显示器的信息。这些信息 通常用于评估浏览网站的设备信息。history 对象提供了操纵浏览器历史记录的能力，开发者可以确定历史记录中包含多少个条目，并以编程方式实现在历史记录中导航，而且也可以修改历史记录。
