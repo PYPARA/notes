@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "github:bulid": "vuepress build docs -- ./docs/.vuepress/config.github.js"
   },
   "devDependencies": {
     "vuepress": "^2.0.0-beta.48"

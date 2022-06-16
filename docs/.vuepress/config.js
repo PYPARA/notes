@@ -5,6 +5,7 @@ module.exports = {
   lang: 'zh-CN',
   // 左上角标题
   title: 'PYPARA',
+  base: '/',
   description: '个人收藏记录',
   head: [
     ['link', {
