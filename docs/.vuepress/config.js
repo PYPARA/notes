@@ -1,12 +1,14 @@
 const {
   defaultTheme
 } = require('vuepress')
+// const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
+
 module.exports = {
   lang: 'zh-CN',
   // 左上角标题
   title: 'PYPARA',
   base: '/',
-  description: '个人收藏记录',
+  description: '个人记录',
   head: [
     ['link', {
       rel: 'icon',
@@ -24,8 +26,8 @@ module.exports = {
         link: '/learn/'
       },
       {
-        text: 'Repository',
-        link: '/repository/'
+        text: 'Reading',
+        link: '/reading/'
       },
       {
         text: 'Blog',
@@ -35,10 +37,10 @@ module.exports = {
         text: 'Notes',
         link: '/notes/'
       },
-      {
-        text: 'Interview',
-        link: '/interview/'
-      },
+      // {
+      //   text: 'Interview',
+      //   link: '/interview/'
+      // },
 
       // {
       //   text: 'Group',
@@ -117,6 +119,11 @@ module.exports = {
     // 可以通过 Formatter 自定义每个页面的深度
     // 页面中使用 --- xxx: xxx  --- 来配置
     sidebarDepth: 1,
-    
-  })
+
+  }),
+  plugins: [
+    // docsearchPlugin({
+    //   // 配置项
+    // }),
+  ],
 }
