@@ -6,7 +6,7 @@ heroImage: /home.jpeg
 actions:
   - text: 随便看看 →
     link: /blog/
-  - text: 学习
+  - text: 批判一番 →
     link: /learn/
     type: secondary
 # features:

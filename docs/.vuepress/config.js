@@ -111,8 +111,15 @@ module.exports = {
           '/learn/JavaScript高级程序设计/11-期约与异步函数',
           '/learn/JavaScript高级程序设计/12-BOM',
           '/learn/JavaScript高级程序设计/13-客户端检测',
+          '/learn/JavaScript高级程序设计/14-DOM',
         ]
-      },]
+      },{
+        text: 'JavaScript',
+        collapsible: true,
+        children: [
+          '/learn/JavaScript/0-JavaScript继承机制',
+        ]
+      }]
 
     },
     // 侧边栏深度
