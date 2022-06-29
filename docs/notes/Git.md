@@ -11,10 +11,13 @@
 最后，强制更新存储库。git push -f origin main
 ```
 
-## git hotfix常见步骤
-```
-//找到对应版本的SHA值 例如2b1c225dcbbc4e1da11164af945344d88bc8f559
-git checkout -b 新分支名 2b1c225dcbbc4e1da11164af945344d88bc8f559
-git branch //查看分支是否创建成功
-git push origin 本地新分支名:远程新分支名
-```
+
+feat: 新功能
+fix: 修复bug
+docs：文档（documentation）
+style： 格式（不影响代码运行的变动）
+refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+test：增加测试
+chore：构建过程或辅助工具的变动
+revert：回滚上一个修改
+perf：性能相关的变动

@@ -74,7 +74,8 @@ module.exports = {
         text: 'Blog',
         link: '/blog/',
         collapsible: true,
-        children: [{
+        children: [
+          {
             text: '简介',
             link: '/blog/'
           },
@@ -112,6 +113,7 @@ module.exports = {
           '/learn/JavaScript高级程序设计/12-BOM',
           '/learn/JavaScript高级程序设计/13-客户端检测',
           '/learn/JavaScript高级程序设计/14-DOM',
+          '/learn/JavaScript高级程序设计/15-DOM扩展',
         ]
       },{
         text: 'JavaScript',
