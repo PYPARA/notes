@@ -1,27 +1,12 @@
 # [译] JavaScript. The Core: 第2版
 
-## 原文地址： http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/
+## 原文地址
+http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/
 
+## Introduction
 这是 JavaScript. The Core 综述讲稿的第二个版本，讲解了ECMAScript 编程语言及其运行时系统的核心组件。
 
-
-
 **适合读者**：有经验的工程师，专家。
-
-
-
-- [[译] JavaScript. The Core: 第2版](#译-javascript-the-core-第2版)
-  - [原文地址： http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/](#原文地址-httpdmitrysoshnikovcomecmascriptjavascript-the-core-2nd-edition)
-  - [Object](#object)
-  - [Prototype](#prototype)
-  - [Class](#class)
-  - [Execution context](#execution-context)
-  - [Environment](#environment)
-  - [Closure](#closure)
-  - [This](#this)
-  - [Realm](#realm)
-  - [Job](#job)
-  - [Agent](#agent)
 
 在本文的第一个版本中，涵盖了 JS 语言的通用特性。大部分是对ES3规范的概念讲解，以及一些ES5和ES6(ES2015)中比较合适的改变。
 
@@ -29,23 +14,15 @@
 
 本文涵盖了ES2017+运行时系统。
 
-
-
 **注:** 最新版本的 [ECMAScript 规范](https://tc39.github.io/ecma262/) 可以在TC-39网站上找到。
 
-
-
 我们首先来讨论对象(Object)，对象是JavaScript语言的基础。
-
-
 
 ## [Object](#object)
 
 ECMAScript 是门面向对象的语言，它基于原型，对象是它的核心概念。
 
-**定义. 1: 对象(Object):** 对象是属性的集合, 他有一个原型对象（*single prototype object*）.原型是一个对象 或者 `null` 值。
-
-
+**定义 1: 对象(Object):** 对象是属性的集合, 他有一个原型对象（*single prototype object*）.原型是一个对象 或者 `null` 值。
 
 首先我们来举一个对象的例子，一个对象的原型(prototype)被对象内部属性 `[[Prototype]]` 引用，并且通过`__proto__`暴露个用户级别的代码。 
 
@@ -62,25 +39,15 @@ let point = {
 
 ![Figure 1. A basic object with a prototype.](http://dmitrysoshnikov.com/wp-content/uploads/2017/11/js-object.png)
 
-
-
 **注:** 对象也可以存储*symbol*。有关symbol的更多信息，请参考[这份文档](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)。
 
-
-
-原型对象通过动态调度（ *dynamic dispatch*） 机制来实现继承。让我们来研究一下原型链的概念，详细的
-
-看看这个机制。
-
-
+原型对象通过动态调度（ *dynamic dispatch*） 机制来实现继承。让我们来研究一下原型链的概念，详细的看看这个机制。
 
 ## [Prototype](#prototype)
 
 每个对象（object）创建时（created），都会接收它的原型（*prototype*），如果原型没有显式的设置，对象接收默认原型作为其继承对象。
 
-
-
-**定义. 2: 原型（Prototype）:** 原型是用于实现 *基于原型继承*  的委托对象。
+**定义 2: 原型（Prototype）:** 原型是用于实现 *基于原型继承*  的委托对象。
 
 原型可以显示的利用 `__proto__` 属性或者`Object.create` 方法设置。
 
@@ -108,9 +75,7 @@ console.log(
 
 任何对象都可以成为另一个对象的原型，而且原型对象可以拥有自己的原型。如果原型有一个非空引用的原型，这被称作原型链（*prototype chain*）。
 
-
-
-**定义. 3: 原型链（Prototype chain）:** *原型链（prototype chain）* 是用于实现 *继承* 和 *共享属性* 的一条 *有限* 的对象链。
+**定义 3: 原型链（Prototype chain）:** *原型链（prototype chain）* 是用于实现 *继承* 和 *共享属性* 的一条 *有限* 的对象链。
 
 ![Figure 2. A prototype chain.](http://dmitrysoshnikov.com/wp-content/uploads/2017/11/prototype-chain.png)
 
@@ -118,9 +83,7 @@ console.log(
 
 从技术上讲，这种机制被称为 *动态调度（dynamic dispatch）* or *委托 （delegation）*.
 
-
-
-**定义. 4: 委托（Delegation）:** 一种用于解析在继承链中一个属性的机制。这个过程发生在运行时，所以也叫做 **动态调度（dynamic dispatch）**。
+**定义 4: 委托（Delegation）:** 一种用于解析在继承链中一个属性的机制。这个过程发生在运行时，所以也叫做 **动态调度（dynamic dispatch）**。
 
 **注:** 于  *静态调度（static dispatch）* 形成对比，*静态调度（static dispatch）*会在编译时解析引用, *动态调度（dynamic dispatch）* 在运行时解析引用。
 
@@ -174,7 +137,7 @@ console.log(objectC.x); // 20
 
 当多个对象共享相同的初始化状态和行为的时候，它们就形成一个类(*classification*)。
 
-**定义. 5: 类(Class):** 一个类是形式化抽象概念的集合，指定了其对象的初始化状态和行为。
+**定义 5: 类(Class):** 一个类是形式化抽象概念的集合，指定了其对象的初始化状态和行为。
 
 假设我们需要多个对象，它们继承自同一个原型，我们可以先创建一个原型，然后在新创建对象时继承它：
 
@@ -232,11 +195,9 @@ console.log(
 
 **注:** 类 *“class”* 只是一个理论上的概念(*theoretical abstraction*)。从技术上讲，它可以像Java或者C++那样，用静态调度实现 (*static dispatch*) ，也可以像JavaScript，Python，Ruby等用动态调度实现(委托) (*dynamic dispatch (delegation)*) 。
 
-
-
 技术上讲，一个类  (class)被表示为一对*“constructor function(构造函数) + prototype(原型)”* 。因此，构造函数在创建对象的同时，会自动的为新创建的实例设置原型  (*prototype* )。原型存储`<ConstructorFunction>.prototype` 属性中。
 
-**定义. 6: 构造函数(Constructor):** 构造函数是一个用于创建实例并且自动设置实例原型的函数。
+**定义 6: 构造函数(Constructor):** 构造函数是一个用于创建实例并且自动设置实例原型的函数。
 
 可以显式的使用构造函数。在类Class这个概念引入之前，JS程序员过去也没有更好的替代品(我们依旧可以在网上看到很多这种遗留代码：
 
@@ -281,7 +242,7 @@ console.log(
 
 为了执行JS代码，并且跟踪运行时求值，ECMAScript 规范定义了执行上下文 (*execution context*)的概念。 逻辑上讲，执行上下文是用栈来维护的(栈是执行上下文栈的简写)，栈和调用栈*call-stack*这个通用概念有关。 
 
-**定义. 7: 执行上下文(Execution context:)** 执行上下文是用于跟踪运行时代码求值的一个规范设备。
+**定义 7: 执行上下文(Execution context:)** 执行上下文是用于跟踪运行时代码求值的一个规范设备。
 
 ECMAScript 代码有几种类型：全局代码 *global code*，函数代码 *function code*, eval代码*evalcode*, 和模块代码 *module code*；每种代码都是在它的执行上下文中求值。不同代码类型以及对应的对象可能会影响执行上下文的结构；比如， *generator functions* 函数在上下文中保存 *generator object* 。
 
@@ -307,7 +268,7 @@ recursive(0);
 
 调用另一个上下文的上下文被称作调用者 *caller*。被调用的上下文称之为被调用者 *callee*。在我们的例子当中， `recursive` 函数同时扮演两个角色，既是调用者，也是被调用者。
 
-**定义. 8: 执行上下文栈(Execution context stack):** 执行上下文栈是一种 LIFO 数据结构(后进先出)，用于维护控制流程和执行顺序。
+**定义 8: 执行上下文栈(Execution context stack):** 执行上下文栈是一种 LIFO 数据结构(后进先出)，用于维护控制流程和执行顺序。
 
 比如下面我们有一个*“压入-弹出(push-pop)”* 变动图：
 
@@ -343,7 +304,7 @@ The `yield` 语句将值返回给调用者，并对执行上下文栈做POP操�
 
 每个执行上下文都一个对应的语法环境 *lexical environment*。
 
-**Def. 9:语法环境(Lexical environment):** 语法环境是用于定义上下文中标识符和其值关联关系的数据结构。每个语法环境都有一个可选的父环境(*optional parent environment*)的引用。
+**定义 9:语法环境(Lexical environment):** 语法环境是用于定义上下文中标识符和其值关联关系的数据结构。每个语法环境都有一个可选的父环境(*optional parent environment*)的引用。
 
 所以环境就是定义在作用域中变量、函数、类的仓库 (*storage*) 。
 
@@ -369,7 +330,7 @@ foo(30); // 150
 
 从逻辑上讲，我让我们想起了上面讨论过的原型链( *prototype chain*) 。而且标识符解析(*identifiers resolution*)的规则是很相似的：如果一个变量在自己的环境中找不到，就会试着去父环境、父环境的父环境中找，以此类推，直到找完整个环境链。
 
-**定义. 10: 标识符解析(Identifier resolution）:** 在环境链中解析变量(绑定)的过程。一个无法解析变量的会导致`ReferenceError`。
+**定义 10: 标识符解析(Identifier resolution）:** 在环境链中解析变量(绑定)的过程。一个无法解析变量的会导致`ReferenceError`。
 
 这解释了为什么变量 `x` 被解析成 `100`而不是 `10` ——因为`x`直接在 `foo`自身环境中找到；为什么可以访问参数  `z` ——因为它也是只存储在激活环境中 (*activation environment*)；为什么我们还可以访问变量  `y`——因为可以在父环境中找到它。
 
@@ -426,11 +387,11 @@ console.log(
 
 在ECMAScrip中，函数是一等公民。这个概念是函数式编程的基础，而JavaScript是支持函数式编程的。
 
-**定义. 11: 一等函数(First-class function):** 一个可以作为普通数据的函数，可以存储为变量，作为参数传递，或者作为另一个函数的返回值返回。
+**定义 11: 一等函数(First-class function):** 一个可以作为普通数据的函数，可以存储为变量，作为参数传递，或者作为另一个函数的返回值返回。
 
 与一等函数概念相关的是 [“Funarg问题”](https://en.wikipedia.org/wiki/Funarg_problem)  (或者 *“函数式实参问题”*)。这个问题是在函数必须处理自由变量的时候出现的。
 
-**定义. 12: 自由变量(Free variable):**一个既不是参数，又不是这个函数的本地变量的变量。 
+**定义 12: 自由变量(Free variable):**一个既不是参数，又不是这个函数的本地变量的变量。 
 
 让我们来看一个 Funarg 问题， 来看看ECMAScript是如何解决这个问题的。
 
@@ -458,7 +419,7 @@ bar(foo);
 
 这个问题通过达成使用静态作用域来解决，静态作用域是创建时的作用域。
 
-**定义. 13: 静态作用域(Static scope):** 当一个语言通过查找源代码，就可以判断绑定在哪个环境中解析，这个语言就实现了静态作用域。
+**定义 13: 静态作用域(Static scope):** 当一个语言通过查找源代码，就可以判断绑定在哪个环境中解析，这个语言就实现了静态作用域。
 
 静态作用域又称为语法作用域，这也是语法环境T(*lexical environments*)这个词的由来。
 
@@ -474,7 +435,7 @@ bar(foo);
 
 我们可以看到，一个环境引用一个函数，函数有引用回该环境。
 
-**定义. 14: 闭包(Closure):** 闭包是一个函数捕获它定义时环境。这个环境用于标识符解析。
+**定义 14: 闭包(Closure):** 闭包是一个函数捕获它定义时环境。这个环境用于标识符解析。
 
 **注:** 一个函数在一个新的激活环境中被调用，这个环境存储了本地变量和参数。这个激活环境的父环境被设置为该环节的闭合环境，从而有了语法作用域的语义。
 
@@ -550,7 +511,7 @@ console.log(
 
  `this`的用途是为了多个对象执行相同的代码。 
 
-**定义. 15: This:** 一个隐式的上下文对象，可以从一个执行上下文的代码中访问，从而在多个对象中应用相同的代码。
+**定义 15: This:** 一个隐式的上下文对象，可以从一个执行上下文的代码中访问，从而在多个对象中应用相同的代码。
 
 主要的使用案例是基于类的OOP。一个实例方法(在原型中定义的)存在于例子中，但是在该类的所有实例中共享。
 
@@ -689,7 +650,7 @@ console.log(
 
 在求值之前，所有的ECMAScript代码都必须与一个域关联。从技术上来讲，域只是给一个上下文提供全局环境。
 
-**定义. 16: 域(Realm):** 代码域是一个封装了单独全局环境的对象。
+**定义 16: 域(Realm):** 代码域是一个封装了单独全局环境的对象。
 
 当一个执行上下文被创建的时候，就会与一个特定的代码域关联起来，这个代码域为上下文提供全局环境。而且这种关联将保持不变。
 
@@ -725,7 +686,7 @@ vm.runInContext(code, realm2); // 20
 
 有些操作可以被推迟，并在执行上下文栈上有可用点时执行。
 
-**定义. 17:作业( Job):** 作业是一种抽象的操作，它在没有其他ECMAScript 计算进行时启动一个ECMAScript 计算。
+**定义 17:作业( Job):** 作业是一种抽象的操作，它在没有其他ECMAScript 计算进行时启动一个ECMAScript 计算。
 
 作业在作业队列(**job queues**)中排队，在当前版本的规范中，有两种作业队列，**ScriptJobs**和 **PromiseJobs**。
 
@@ -782,7 +743,7 @@ console.log(20);
 
 并发(*concurrency*)和并行( *parallelism*) 在ECMAScript 用代理模式(*Agent pattern*)实现。代理模式很接近于参与者模式([Actor pattern](https://en.wikipedia.org/wiki/Actor_model)) ——一个带有消息传递(*message-passing*)风格通讯的轻量级进程。
 
-**定义. 18: 代理(Agent):** 代理是封装了执行上下文栈、一组作业队列，以及代码域的一个概念。
+**定义 18: 代理(Agent):** 代理是封装了执行上下文栈、一组作业队列，以及代码域的一个概念。
 
 依赖代理的实现可以在同一个线程上运行，或者单独的线程。浏览器环境的`Worker`代理是代理概念的一个例子。
 
@@ -853,4 +814,5 @@ onmessage = (message) => {
 祝你学习ECMAScript顺利！
 
 **Written by:** Dmitry Soshnikov
+
 **Published on:** November 14th, 2017

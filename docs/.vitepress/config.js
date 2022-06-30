@@ -1,6 +1,6 @@
 const base = process.argv.indexOf('--base') > -1 ? process.argv[process.argv.indexOf('--base') + 1] : '/'
 
-export default{
+export default {
   title: 'PYPARA',
   description: '个人记录',
   lastUpdated: true,
@@ -11,9 +11,10 @@ export default{
       message: 'Powered by Vitepress',
       copyright: 'Copyright © PYPARA'
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/PYPARA' }
-    ],
+    socialLinks: [{
+      icon: 'github',
+      link: 'https://github.com/PYPARA'
+    }],
     // logo: '/public/home.jpeg',
 
     nav: nav(),
@@ -21,6 +22,7 @@ export default{
     sidebar: {
       '/blog/': sidebarBlog(),
       '/learn/': sidebarLearn(),
+      '/notes/': sidebarNotes(),
     },
   }
 }
@@ -53,11 +55,10 @@ function sidebarBlog() {
   return [{
     text: 'Blog',
     link: '/blog/',
-    collapsible: true,
-    collapsed: true,
+    // collapsible: true,
     items: [{
-      text: '简介',
-      link: '/blog/'
+      text: '[译]JavaScript. The Core: 第2版',
+      link: '/blog/译-JavaScript-The-Core-第2版'
     }]
   }, ]
 }
@@ -156,5 +157,46 @@ function sidebarLearn() {
       text: '0-JavaScript继承机制',
       link: '/learn/JavaScript/0-JavaScript继承机制'
     }]
+  }]
+}
+
+function sidebarNotes() {
+  return [{
+    text: 'Notes',
+    link: '/notes/',
+    // collapsible: true,
+    items: [{
+        text: 'Vue',
+        link: '/notes/Vue',
+      },
+      {
+        text: 'JavaScript',
+        link: '/notes/JavaScript',
+      },
+      {
+        text: 'Nginx',
+        link: '/notes/Nginx',
+      },
+      {
+        text: 'Npm',
+        link: '/notes/Npm',
+      },
+      {
+        text: 'CSS',
+        link: '/notes/CSS',
+      },
+      {
+        text: 'Shell',
+        link: '/notes/Shell',
+      },
+      {
+        text: 'Git',
+        link: '/notes/Git',
+      },
+      {
+        text: 'RegExp',
+        link: '/notes/RegExp',
+      }
+    ]
   }]
 }
