@@ -1,4 +1,27 @@
 ---
+layout: home
+
+title: PYPARA
+titleTemplate: 个人记录
+
+hero:
+  name: PYPARA
+  text: 个人记录
+  tagline: Things change, roll with it.
+  actions:
+    - theme: brand
+      text: 随便看看 →
+      link: /blog/
+    - theme: alt
+      text: 批判一番 →
+      link: /learn/
+
+# features:
+#   - title: "Things change, roll with it."
+#     details: 
+---
+
+<!-- ---
 home: true
 heroImage: /home.jpeg
 # heroAlt: 图片 alt
@@ -17,4 +40,4 @@ actions:
 #   - title: 高性能
 #     details: VuePress 会为每个页面预渲染生成静态的 HTML，同时，每个页面被加载的时候，将作为 SPA 运行。
 footer: Powered by Vuepress | Copyright © PYPARA
----
+--- -->

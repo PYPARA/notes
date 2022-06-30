@@ -1,6 +1,6 @@
 # [译] JavaScript. The Core: 第2版
 
-##### 原文地址： http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/
+## 原文地址： http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/
 
 这是 JavaScript. The Core 综述讲稿的第二个版本，讲解了ECMAScript 编程语言及其运行时系统的核心组件。
 
@@ -10,16 +10,18 @@
 
 
 
-1. [Object](#object)
-2. [Prototype](#prototype)
-3. [Class](#class)
-4. [Execution context](#execution-context)
-5. [Environment](#environment)
-6. [Closure](#closure)
-7. [This](#this)
-8. [Realm](#realm)
-9. [Job](#job)
-10. [Agent](#agent)
+- [[译] JavaScript. The Core: 第2版](#译-javascript-the-core-第2版)
+  - [原文地址： http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/](#原文地址-httpdmitrysoshnikovcomecmascriptjavascript-the-core-2nd-edition)
+  - [Object](#object)
+  - [Prototype](#prototype)
+  - [Class](#class)
+  - [Execution context](#execution-context)
+  - [Environment](#environment)
+  - [Closure](#closure)
+  - [This](#this)
+  - [Realm](#realm)
+  - [Job](#job)
+  - [Agent](#agent)
 
 在本文的第一个版本中，涵盖了 JS 语言的通用特性。大部分是对ES3规范的概念讲解，以及一些ES5和ES6(ES2015)中比较合适的改变。
 
@@ -49,7 +51,7 @@ ECMAScript 是门面向对象的语言，它基于原型，对象是它的核心
 
 对于如下代码：
 
-```javascript
+```js
 let point = {
   x: 10,
   y: 20,
@@ -82,7 +84,7 @@ let point = {
 
 原型可以显示的利用 `__proto__` 属性或者`Object.create` 方法设置。
 
-```javascript
+```js
 // Base object.
 let point = {
   x: 10,
@@ -124,7 +126,7 @@ console.log(
 
 并且，当一个属性最终在原型链中没有找到，就会返回`undefined` 值。
 
-```JavaScript
+```js
 // An "empty" object.
 let empty = {};
  
@@ -141,7 +143,7 @@ console.log(
 
 正如我所见, 一个默认的对象永远都不会为空— 它常常会从 `Object.prototype`继承一些东西. 创建一个 *无原型对象（prototype-less dictionary）*, 必须显示的设置原型为 `null`:
 
-```javascript
+```js
 // Doesn't inherit from anything.
 let dict = Object.create(null);
  
@@ -150,7 +152,7 @@ console.log(dict.toString); // undefined
 
 动态调度（ *dynamic dispatch*）机制允许继承链的完全可变性*（full mutability）* ， 提供改变委托对象的能力。
 
-```javascript
+```js
 let protoA = {x: 10};
 let protoB = {x: 20};
  
@@ -176,7 +178,7 @@ console.log(objectC.x); // 20
 
 假设我们需要多个对象，它们继承自同一个原型，我们可以先创建一个原型，然后在新创建对象时继承它：
 
-```javascript
+```js
 // Generic prototype for all letters.
 //字母的通用原型
 let letter = {
@@ -203,7 +205,7 @@ console.log(
 
 然后，这样显然是非常的不方便的。 而类这个概念正好是用于这种用途的，类 作为一种语法糖 (*syntactic sugar*) (即 一个在语义上做同样的事，但有更好语法形式的结构)，它允许以更方便的模式构建多个对象：
 
-```javascript
+```js
 class Letter {
   constructor(number) {
     this.number = number;
@@ -238,7 +240,7 @@ console.log(
 
 可以显式的使用构造函数。在类Class这个概念引入之前，JS程序员过去也没有更好的替代品(我们依旧可以在网上看到很多这种遗留代码：
 
-```javascript
+```js
 function Letter(number) {
   this.number = number;
 }
@@ -285,7 +287,7 @@ ECMAScript 代码有几种类型：全局代码 *global code*，函数代码 *fu
 
 下面我们来考虑一下这个递归调用：
 
-```javascript
+```js
 function recursive(flag) {
  
   // Exit condition.
@@ -317,7 +319,7 @@ recursive(0);
 
 通常，上下文中的代码会运行到结束，然而正如我们之前提到的，有些对象，例如生成器 *generators*，可能会违反栈 LIFO (后进先出)的顺序。 一个 生成器函数generator可能会挂起它的执行上下文 并在结束前让其从执行上下文栈中删除，直到generator 再次被激活，它的执行上下文恢复，压入执行上下文栈中：
 
-```javascript
+```js
 function *gen() {
   yield 1;
   return 2;
@@ -349,7 +351,7 @@ The `yield` 语句将值返回给调用者，并对执行上下文栈做POP操�
 
 例如下面代码：
 
-```javascript
+```js
 let x = 10;
 let y = 20;
  
@@ -379,7 +381,7 @@ foo(30); // 150
 
 一个对象环境记录的例子可以是全局环境记录。这个记录也有关联的绑定对象，该对象会存储一下来自于记录的属性，不会存储来自其他记录的属性，反之亦然。绑定对象也可以被提供为  `this` 值。
 
-```javascript
+```js
 // Legacy variables using `var`.
 var x = 10;
  
@@ -434,7 +436,7 @@ console.log(
 
 考虑如下的代码片段：
 
-```javascript
+```js
 let x = 10;
  
 function foo() {
@@ -480,7 +482,7 @@ Funarg 问题的第二种类型被称为 **向上Funarg问题(upwards funarg pro
 
 我们来看一个例子：
 
-```javascript
+```js
 function foo() {
   let x = 10;
    
@@ -507,7 +509,7 @@ bar(); // 10, not 20!
 
 如我们上面提到的，与原型类似，同一个父环境可以在几个闭包之间共享。这样就可以访问和修改共享的数据了：
 
-```javascript
+```js
 function createCounter() {
   let count = 0;
  
@@ -552,7 +554,7 @@ console.log(
 
 主要的使用案例是基于类的OOP。一个实例方法(在原型中定义的)存在于例子中，但是在该类的所有实例中共享。
 
-```javascript
+```js
 class Point {
   constructor(x, y) {
     this._x = x;
@@ -586,7 +588,7 @@ console.log(
 
 在下面的例子中， `Movable` 接口包含通用函数 `move`，它期望mixin的用户来实现  `_x`和`_y` 属性：
 
-```javascript
+```js
 // Generic Movable interface (mixin).
 let Movable = {
  
@@ -616,7 +618,7 @@ console.log(p1.getX()); // 100
 
 为了展示 `this` 值的动态性质，考虑下面这个例子，我们留给读者作为一个练习解决： 
 
-```javascript
+```js
 function foo() {
   return this;
 }
@@ -701,7 +703,7 @@ console.log(
 
 让我们来看看使用`vm`模块的各个域的例子：
 
-```javascript
+```js
 const vm = require('vm');
  
 // First realm, and its global:
@@ -739,7 +741,7 @@ vm.runInContext(code, realm2); // 20
 
 例子：
 
-```javascript
+```js
 // Enqueue a new promise on the PromiseJobs queue.
 new Promise(resolve => setTimeout(() => resolve(10), 0))
   .then(value => console.log(value));
@@ -755,7 +757,7 @@ console.log(20);
 
 async函数( **\*async functions***)可以等待promises，所有他们也可以排队promise作业： 
 
-```javascript
+```js
 async function later() {
   return await Promise.resolve(10);
 }
@@ -788,7 +790,7 @@ console.log(20);
 
 在下面的例子中， `index.html`调用 `agent-smith.js` worker，传递共享的内存块： 
 
-```javascript
+```js
 // In the `index.html`:
  
 // Shared data between this agent, and another worker.
@@ -814,7 +816,7 @@ agentSmith.postMessage(sharedHeap);
 
 worker的代码：
 
-```javascript
+```js
 // agent-smith.js
  
 /**

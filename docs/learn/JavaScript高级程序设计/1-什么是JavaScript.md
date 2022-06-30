@@ -1,7 +1,5 @@
 # 1. 什么是JavaScript
 
-[[toc]]
-
 ## 关键字
 ### 历史
 JavaScript
