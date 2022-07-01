@@ -16,7 +16,13 @@ hero:
       text: 批判一番 →
       link: /blog/introduction
 
-# features:
-#   - title: "Things change, roll with it."
-#     details: 
+features:
+  - title: "Learn"
+    details: 看书、学习
+  - title: "Reading"
+    details: 阅读、学习
+  - title: "Learn"
+    details: 书写、学习
+  - title: "Notes"
+    details: 收藏、记录
 ---

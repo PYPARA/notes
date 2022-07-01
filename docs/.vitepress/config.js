@@ -46,7 +46,7 @@ function nav() {
     },
     {
       text: 'Notes',
-      link: '/notes/introduction',
+      link: '/notes/sites',
       activeMatch: '/notes/'
     }
   ]
@@ -168,7 +168,12 @@ function sidebarNotes() {
     text: 'Notes',
     link: '/notes/',
     // collapsible: true,
-    items: [{
+    items: [
+      {
+        text: 'Sites',
+        link: '/notes/sites'
+      },
+      {
         text: 'Vue',
         link: '/notes/Vue',
       },

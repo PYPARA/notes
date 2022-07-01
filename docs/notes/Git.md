@@ -1,5 +1,10 @@
 # Git
 
+## book
+https://git-scm.com/book/zh/v2
+
+https://www.progit.cn/
+
 ## commit 规范
 ```
 feat: 新功能
