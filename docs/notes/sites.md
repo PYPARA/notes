@@ -25,14 +25,24 @@
 - [https://greensock.com/](https://greensock.com/) GSAP
 - [https://pixijs.com/](https://pixijs.com/) Pixi.js
 - [https://howlerjs.com/](https://howlerjs.com/) Howler.js (音频播放)
+- [https://github.com/animate-css/animate.css](https://github.com/animate-css/animate.css) Animate.css (动画)
+- [https://github.com/fengyuanchen/cropperjs](https://github.com/fengyuanchen/cropperjs) Cropper.js (图片裁剪)
+- [https://github.com/videojs/video.js](https://github.com/videojs/video.js) Video.js (视频播放)
+- [https://github.com/microsoft/monaco-editor](https://github.com/microsoft/monaco-editor) Monaco Editor (代码编辑)
+- [https://github.com/getsentry/sentry](https://github.com/getsentry/sentry) Sentry (错误收集)
+- [https://github.com/d3/d3](https://github.com/d3/d3) D3.js (数据可视化)
+- [https://github.com/lindell/JsBarcode](https://github.com/lindell/JsBarcode) JsBarcode (条形码)
+- [https://github.com/VincentGarreau/particles.js](https://github.com/VincentGarreau/particles.js) Particles.js (粒子)
 - [https://github.com/tinymce/tinymce](https://github.com/tinymce/tinymce) TinyMCE (富文本编辑器)
 - [https://github.com/liriliri/eruda](https://github.com/liriliri/eruda) Eruda (移动端调试工具)
+- [https://github.com/electron/electron](https://github.com/electron/electron) Electron (跨端应用)
 
 ## Vue
 - [https://vuejs.org/](https://vuejs.org/) Vue
 - [https://cn.vitejs.dev/](https://cn.vitejs.dev/) Vite
 - [https://vitepress.com/](https://vitepress.com/) VitePress
 - [https://next.vuetifyjs.com/en/](https://next.vuetifyjs.com/en/) Vuetify
+- [https://rollupjs.org/guide/en/](https://rollupjs.org/guide/en/) Rollup
 
 ## JavaScript TypeScript
 - [http://es6.ruanyifeng.com/](http://es6.ruanyifeng.com/) ES6

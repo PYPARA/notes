@@ -5,6 +5,8 @@ https://git-scm.com/book/zh/v2
 
 https://www.progit.cn/
 
+https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md
+
 ## commit 规范
 ```
 feat: 新功能
