@@ -16,22 +16,21 @@ router.onError((error) => {
 })
 ```
 ### nginx config
-```nginx
-<!-- 用于控制html页面不使用缓存 -->
+```bash
+# 用于控制html页面不使用缓存
 if ($request_filename ~* .*.(html|htm)$)
 {
-expires -1;
-add_header Pragma "no-cache";
-add_header Cache-Control "no-store, must-revalidate";
+  expires -1;
+  add_header Pragma "no-cache";
+  add_header Cache-Control "no-store, must-revalidate";
 }
 ```
-```nginx
+```bash
 # history模式，nginx需要配置
 if (!-e $request_filename) {
-rewrite ^/(.*) /xxxxx/index.html last;
-break;
+  rewrite ^/(.*) /xxxxx/index.html last;
+  break;
 }
-
 ```
 
 ## ios vue 项目H5请求地理位置权限异常
