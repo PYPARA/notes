@@ -48,7 +48,24 @@ https的站点访问http的图片可能默认会被阻止, 建议访问 https://
     }
   }
 }
+```
 
+## vue3 scoped-css
+
+https://vuejs.org/api/sfc-css-features.html#scoped-css
+
+```scss
+.a :deep(.b) {
+  /* ... */
+}
+
+:slotted(div) {
+  color: red;
+}
+
+:global(.red) {
+  color: red;
+}
 ```
 
 ## vue 子组件值同步到父组件的绑定上

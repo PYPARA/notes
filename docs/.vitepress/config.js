@@ -60,7 +60,12 @@ function sidebarBlog() {
     items: [{
       text: '[译]JavaScript. The Core: 第2版',
       link: '/blog/译-JavaScript-The-Core-第2版'
-    }]
+    },
+    {
+      text: 'Modularization',
+      link: '/blog/Modularization',
+    }
+  ]
   }, ]
 }
 
@@ -204,6 +209,10 @@ function sidebarNotes() {
       {
         text: 'RegExp',
         link: '/notes/RegExp',
+      },
+      {
+        text: 'Modularization',
+        link: '/notes/Modularization',
       }
     ]
   }]

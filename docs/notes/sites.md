@@ -36,6 +36,7 @@
 - [https://github.com/tinymce/tinymce](https://github.com/tinymce/tinymce) TinyMCE (富文本编辑器)
 - [https://github.com/liriliri/eruda](https://github.com/liriliri/eruda) Eruda (移动端调试工具)
 - [https://github.com/electron/electron](https://github.com/electron/electron) Electron (跨端应用)
+- [https://github.com/hakimel/reveal.js](https://github.com/hakimel/reveal.js) Reveal.js (演示)
 
 ## Vue
 - [https://vuejs.org/](https://vuejs.org/) Vue
