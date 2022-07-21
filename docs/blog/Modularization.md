@@ -598,7 +598,7 @@ $ npm run [command] [-- <args>]
 
 ### Webpack - Module Bundler (2014)
 https://webpack.js.org/
-(文档已最新官方文档为准)
+(文档以最新官方文档为准)
 
 transforming, bundling, or packaging just about any resource or asset
 
@@ -756,7 +756,7 @@ Well...But There Is No Runtime...
 
 ### Babel - JavaScript Compiler (2015)
 https://babeljs.io/
-(已最新文档为准)
+(以最新文档为准)
 
 Use next generation JavaScript, today.
 
