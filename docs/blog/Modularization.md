@@ -302,8 +302,8 @@ console.log('done!');
 
 分歧和冲突
 
-- (Modules/Async)(http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition)
-- (Modules/Wrappings)(http://wiki.commonjs.org/wiki/Modules/Wrappings)
+- [Modules/Async](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition)
+- [Modules/Wrappings](http://wiki.commonjs.org/wiki/Modules/Wrappings)
 - Modules/Transport
 - Modules/2.0
 
