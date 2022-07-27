@@ -70,6 +70,18 @@
 - [http://www-cs-students.stanford.edu/~tjw/jsbn/](http://www-cs-students.stanford.edu/~tjw/jsbn/) RSA and ECC in JavaScript
 - [https://github.com/brix/crypto-js](https://github.com/brix/crypto-js) CryptoJS
 - [https://github.com/digitalbazaar/forge](https://github.com/digitalbazaar/forge) Forge
+- [https://github.com/travist/jsencrypt](https://github.com/travist/jsencrypt) JSEncrypt
+
+###  keygen
+https://stackoverflow.com/questions/67909016/is-there-a-way-to-generate-rsa-key-pair-client-side-with-javascript
+```js
+var crypt = new JSEncrypt({ default_key_size: 2048 }); 
+var PublicPrivateKey = {
+  PublicKey: crypt.getPublicKey(), 
+  PrivateKey: crypt.getPrivateKey()
+};
+```
+https://github.com/PYPARA/forge/tree/main/rsa
 
 ## command-line
 - [https://github.com/jlevy/the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line) command-line

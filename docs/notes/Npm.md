@@ -18,3 +18,13 @@ npm config set registry https://registry.npmjs.org/
 ```bash
 npm list -g --depth 0
 ```
+
+## 查看某个包的依赖路径
+```bash
+npm list [package]
+```
+
+## 升级 npm
+```bash
+sudo npm install -g npm@8.15.0
+```
