@@ -132,6 +132,10 @@ function sidebarLearn() {
         {
           text: "15-DOM扩展",
           link: "/learn/JavaScript高级程序设计/15-DOM扩展"
+        },
+        {
+          text: "16-DOM2和DOM3",
+          link: "/learn/JavaScript高级程序设计/16-DOM2和DOM3"
         }
       ]
     }, {
@@ -213,6 +217,10 @@ function sidebarNotes() {
       {
         text: 'Modularization',
         link: '/notes/Modularization',
+      },
+      {
+        text: '微信小程序',
+        link: '/notes/wechat-miniprogram',
       }
     ]
   }]
