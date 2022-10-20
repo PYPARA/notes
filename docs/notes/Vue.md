@@ -15,23 +15,6 @@ router.onError((error) => {
   }
 })
 ```
-### nginx config
-```bash
-# 用于控制html页面不使用缓存
-if ($request_filename ~* .*.(html|htm)$)
-{
-  expires -1;
-  add_header Pragma "no-cache";
-  add_header Cache-Control "no-store, must-revalidate";
-}
-```
-```bash
-# history模式，nginx需要配置
-if (!-e $request_filename) {
-  rewrite ^/(.*) /xxxxx/index.html last;
-  break;
-}
-```
 
 ## ios vue 项目H5请求地理位置权限异常
 进入首页第一个页面时需要请求定位权限并同意，否则后续页面可能定位权限可能会默认处于禁用状态

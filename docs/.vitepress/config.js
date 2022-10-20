@@ -136,6 +136,10 @@ function sidebarLearn() {
         {
           text: "16-DOM2和DOM3",
           link: "/learn/JavaScript高级程序设计/16-DOM2和DOM3"
+        },
+        {
+          text: "17-事件",
+          link: "/learn/JavaScript高级程序设计/17-事件"
         }
       ]
     }, {

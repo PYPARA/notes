@@ -52,6 +52,7 @@
 - [https://www.w3cplus.com/](https://www.w3cplus.com/) W3CPlus
 
 ## CSS
+- [https://lhammer.cn/You-need-to-know-css](https://lhammer.cn/You-need-to-know-css) You-need-to-know-css
 - [https://sass-guidelin.es/zh/](https://sass-guidelin.es/zh/) Sass
 - [https://github.com/tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss) TailwindCSS
 - [https://www.zhangxinxu.com/](https://www.zhangxinxu.com/) 张鑫旭
@@ -76,9 +77,9 @@
 https://stackoverflow.com/questions/67909016/is-there-a-way-to-generate-rsa-key-pair-client-side-with-javascript
 ```js
 var crypt = new JSEncrypt({ default_key_size: 2048 }); 
-var PublicPrivateKey = {
-  PublicKey: crypt.getPublicKey(), 
-  PrivateKey: crypt.getPrivateKey()
+var keypair = {
+  publicKey: crypt.getPublicKey(), 
+  privateKey: crypt.getPrivateKey()
 };
 ```
 https://github.com/PYPARA/forge/tree/main/rsa
