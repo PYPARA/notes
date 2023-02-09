@@ -236,7 +236,7 @@ function getElementTop(element) {
 这两个函数使用 `offsetParent` 在 DOM 树中逐级上溯，将每一级的偏移属性相加，最终得到元 素的实际偏移量。对于使用 CSS 布局的简单页面，这两个函数是很精确的。而对于使用表格和内嵌窗 格的页面布局，它们返回的值会因浏览器不同而有所差异，因为浏览器实现这些元素的方式不同。一 般来说，包含在 `<div>` 元素中所有元素都以 `<body>` 为其 `offsetParent`，因此 `getElementleft()` 和 `getElementTop()` 返回的值与 `offsetLeft` 和 `offsetTop` 返回的值相同。
 
 #### 2. 客户端尺寸
-元素的客户端尺寸(client dimensions)包含元素内容及其内边距所占用的空间。客户端尺寸只有两 个相关属性:`clientWidth` 和 `clientHeight`。其中，`clientWidth` 是内容区宽度加左、右内边距宽度，`clientHeight` 是内容区高度加上、下内边距高度。
+元素的客户端尺寸(client dimensions)包含元素内容及其内边距所占用的空间。客户端尺寸只有两个相关属性:`clientWidth` 和 `clientHeight`。其中，`clientWidth` 是内容区宽度加左、右内边距宽度，`clientHeight` 是内容区高度加上、下内边距高度。
 
 客户端尺寸实际上就是元素内部的空间，因此不包含滚动条占用的空间。这两个属性最常用于确定 浏览器视口尺寸，即检测 `document.documentElement` 的 `clientWidth` 和 `clientHeight`。这两个 属性表示视口`(<html>`或`<body>`元素)的尺寸。
 

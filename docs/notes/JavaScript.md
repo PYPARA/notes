@@ -102,3 +102,56 @@ async function copyToClipboard(text) {
   }
 }
 ```
+
+## 全屏
+```js
+let fullscreen;
+let fsEnter = document.getElementById('fullscr');
+fsEnter.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (!fullscreen) {
+    fullscreen = true;
+    document.documentElement.requestFullscreen();
+    fsEnter.innerHTML = "Exit Fullscreen";
+  }
+  else {
+    fullscreen = false;
+    document.exitFullscreen();
+    fsEnter.innerHTML = "Go Fullscreen";
+  }
+});
+```
+
+## 下载表格
+```js
+downloadExcel() {
+  let excelList = [];
+  let excelTitle = ['AAA' ,'BBB', 'CCC']
+  // 数据列表
+  if (this.list) {
+    this.list.forEach((item, index) => {
+      excelList.push([1,2,3]);
+      excelList.push(Object.values(item));
+    });
+    excelList.unshift(excelTitle);
+    console.log(excelList);
+    // 生成表格
+    // 构造数据字符，换行需要用\r\n
+    let CsvString = excelList.map(data => data.join(',')).join('\r\n');
+    // 加上 CSV 文件头标识
+    CsvString =
+      'data:application/vnd.ms-excel;charset=utf-8,\uFEFF' +
+      encodeURIComponent(CsvString);
+    // 通过创建a标签下载
+    const link = document.createElement('a');
+    link.href = CsvString;
+    // 对下载的文件命名
+    link.download = `title.csv`;
+    // 模拟点击下载
+    link.click();
+    // 移除a标签
+    link.remove();
+  }
+}
+}
+```
