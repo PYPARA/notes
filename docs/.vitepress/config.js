@@ -25,6 +25,9 @@ export default {
       '/notes/': sidebarNotes(),
       '/reading/': sidebarReading(),
     },
+    search: {
+      provider: 'local'
+    }
   }
 }
 
@@ -70,11 +73,12 @@ function sidebarBlog() {
 }
 
 function sidebarLearn() {
-  return [{
+  return [
+    {
       text: 'JavaScript高级程序设计',
-      collapsible: true,
-      // collapsed: true,
-      items: [{
+      collapsed: false,
+      items: [
+        {
           text: "1-什么是JavaScript",
           link: "/learn/JavaScript高级程序设计/1-什么是JavaScript"
         },
@@ -142,11 +146,12 @@ function sidebarLearn() {
           link: "/learn/JavaScript高级程序设计/17-事件"
         }
       ]
-    }, {
+    }, 
+    {
       text: 'Effective-JavaScript',
-      collapsible: true,
-      // collapsed: true,
-      items: [{
+      collapsed: false,
+      items: [
+        {
           text: 'Chapter1-Accustoming-Yourself-to-JavaScript',
           link: '/learn/Effective-JavaScript/Chapter1-Accustoming-Yourself-to-JavaScript'
         },
@@ -166,8 +171,7 @@ function sidebarLearn() {
     },
     {
       text: 'JavaScript',
-      collapsible: true,
-      // collapsed: true,
+      collapsed: false,
       items: [{
         text: '0-JavaScript继承机制',
         link: '/learn/JavaScript/0-JavaScript继承机制'

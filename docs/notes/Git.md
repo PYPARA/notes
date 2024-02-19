@@ -22,23 +22,5 @@ perf: 优化相关，比如提升性能、体验
 ci: 开发类，持续集成和部署脚本、设置或工具相关
 ```
 
-## 删除所有提交历史记录
-删除.git文件夹可能会导致git存储库中的问题。如果要删除所有提交历史记录，但将代码保持在当前状态，可以按照以下方式安全地执行此操作：
-
-```bash
-# 建立临时分支
-git checkout --orphan latest_branch
-# 添加所有文件
-git add -A
-# 提交更改
-git commit -am "commit message"
-# 删除分支
-git branch -D main
-# 将当前分支重命名
-git branch -m main
-# 最后，强制更新存储库
-git push -f origin main
-```
-
 
 

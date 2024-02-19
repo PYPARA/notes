@@ -38,6 +38,10 @@ location /project {
   alias  Jenkins/project;
   index  index.html index.htm;
 
+  if ($request_filename ~* .(js|css|gif|jpg|jpeg|png|bmp|swf|ico|mp3|mp4|zip|rar|gz|tar|tgz|exe|doc|xls|pdf|ppt|txt|woff|woff2|svg|eot|ttf|json)$) {
+    break;
+  }
+
   if (!-e $request_filename) {
     rewrite ^/(.*) /project/index.html last;
     break;

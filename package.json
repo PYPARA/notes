@@ -1,12 +1,13 @@
 {
   "scripts": {
+    "dev": "npm run docs:dev",
     "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
     "docs:github:build": "vitepress build docs --base /notes/",
     "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-alpha.22",
-    "vue": "^3.2.41"
+    "vitepress": "^1.0.0-rc.43",
+    "vue": "^3.4.19"
   }
 }

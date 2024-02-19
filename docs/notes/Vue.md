@@ -70,7 +70,18 @@ this.$emit('prop:aaa', value)
 </script>
 ```
 
+## vue3 `v-for` 模版引用 `itemRefs` 数组不保证与源数组相同的顺序 
 
+使用 `:ref` 确保顺序一致，以避免可能出现的 `bug`
+```html
+<div v-for="page in 10" :key="page">
+  <component :is="items[page - 1]" :ref="(el) => { itemRefs[page - 1] = el }" />
+</div>
+
+<script>
+  const itemRefs = ref([])
+</script>
+```
 
 
 

@@ -7,7 +7,7 @@ npm get registry
 ```
 ### 切换成淘宝镜像
 ```bash
-npm config set registry http://registry.npm.taobao.org/
+npm config set registry https://registry.npmmirror.com
 ```
 ### 换回原源
 ```bash

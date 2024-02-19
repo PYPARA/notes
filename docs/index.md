@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: 随便看看 →
-      link: /reading/introduction
+      link: /blog/译-JavaScript-The-Core-第2版
     - theme: alt
       text: 批判一番 →
-      link: /blog/introduction
+      link: /notes/sites
 
 features:
   - title: "Learn"
