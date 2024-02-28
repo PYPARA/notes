@@ -10,8 +10,6 @@
 
 <script setup>
 import html2canvas from 'html2canvas';
-import config from '@/environment';
-import { showLoadingToast, closeToast, showToast } from 'vant';
 
 const props = defineProps({
   url: {
@@ -29,7 +27,7 @@ const loadingTaskPdf = async (url) => {
   console.log('loadingTaskPdf');
   if (!window.pdfjsLib) {
     try {
-      await hc.utils.loadJs(`${window.location.origin}${config.base}pdfjs/pdf.js`);
+      await loadJs(`pdfjs/pdf.js`);
     } catch (e) {
       console.log(e);
       error.value = true;
@@ -37,14 +35,11 @@ const loadingTaskPdf = async (url) => {
     }
   }
   const PdfJs = window.pdfjsLib;
-  PdfJs.GlobalWorkerOptions.workerSrc = `${window.location.origin}${config.base}pdfjs/pdf.worker.js`;
+  PdfJs.GlobalWorkerOptions.workerSrc = `pdfjs/pdf.worker.js`;
 
-  // PdfJs.GlobalWorkerOptions.workerSrc = window.pdfjsWorker;
-
-  // const loadingTask = PdfJs.getDocument(url);
   const loadingTask = PdfJs.getDocument({
     url,
-    cMapUrl: `${window.location.origin}${config.base}pdfjs/cmaps/`,
+    cMapUrl: `pdfjs/cmaps/`,
     cMapPacked: true,
     disableWorker: true,
   });
@@ -79,17 +74,6 @@ const loadingTaskPdf = async (url) => {
   });
 };
 
-const nativePrint = (base64) => {
-  let baseUrl = base64;
-  if (base64.startsWith('data:')) {
-    const baseArr = base64.split(';base64,');
-    // eslint-disable-next-line prefer-destructuring
-    baseUrl = baseArr[1];
-  }
-  console.log('PRINT_A4');
-  console.log(baseUrl);
-};
-
 onMounted(() => {
   const url = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
   loadingTaskPdf(url);
@@ -97,10 +81,7 @@ onMounted(() => {
 
 const print = () => {
   if (error.value) {
-    showToast({
-      message: '打印异常，请重试',
-      forbidClick: true,
-    });
+    console.log('error');
     return;
   }
   if (!complete.value) {
@@ -126,7 +107,6 @@ const print = () => {
     closeToast();
     const url = canvas.toDataURL();
     console.log('drawImg');
-    nativePrint(url);
   });
   
 };
@@ -222,7 +202,7 @@ const renderPdf = (pdfCtx, num = 1) => {
 const loadingTaskPdf = async (url) => {
   if (!window.pdfjsLib) {
     try {
-      await hc.utils.loadJs(`${window.location.origin}${config.base}pdfjs/pdf.min.js`);
+      await loadJs(`pdfjs/pdf.min.js`);
     } catch (e) {
       console.log(e);
       error.value = true;
@@ -231,14 +211,14 @@ const loadingTaskPdf = async (url) => {
   }
 
   const PdfJs = window.pdfjsLib;
-  PdfJs.GlobalWorkerOptions.workerSrc = `${window.location.origin}${config.base}pdfjs/pdf.worker.min.js`;
+  PdfJs.GlobalWorkerOptions.workerSrc = `pdfjs/pdf.worker.min.js`;
 
   // PdfJs.GlobalWorkerOptions.workerSrc = window.pdfjsWorker;
 
   // const loadingTask = PdfJs.getDocument(url);
   const loadingTask = PdfJs.getDocument({
     url,
-    cMapUrl: `${window.location.origin}${config.base}pdfjs/cmaps/`,
+    cMapUrl: `pdfjs/cmaps/`,
     cMapPacked: true,
     disableWorker: true,
   });

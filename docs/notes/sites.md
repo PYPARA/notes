@@ -4,6 +4,8 @@
 - [https://www.google.com/](https://www.google.com/) 谷歌搜索
 - [https://www.baidu.com/](https://www.baidu.com/) 百度搜索
 - [https://www.zhihu.com/](https://www.zhihu.com/) 知乎
+- [https://github.com/](https://github.com/) GitHub
+- [https://www.npmjs.com/](https://www.npmjs.com/) Npm
 
 ## Roadmap
 - [https://github.com/kamranahmedse/developer-roadmap](https://github.com/kamranahmedse/developer-roadmap) Roadmap
@@ -20,7 +22,7 @@
 ## Repository
 - [https://github.com/axios/axios](https://github.com/axios/axios) Axios
 - [https://www.lodashjs.com/](https://www.lodashjs.com/) Lodash.js
-- [http://momentjs.cn/](http://momentjs.cn/) Moment.js (时间处理)
+- [https://day.js.org/](https://day.js.org/) Day.js (时间处理)
 - [https://youzan.github.io/vant/](https://youzan.github.io/vant/) Vant
 - [https://greensock.com/](https://greensock.com/) GSAP
 - [https://pixijs.com/](https://pixijs.com/) Pixi.js
@@ -73,31 +75,39 @@
 - [https://github.com/digitalbazaar/forge](https://github.com/digitalbazaar/forge) Forge
 - [https://github.com/travist/jsencrypt](https://github.com/travist/jsencrypt) JSEncrypt
 
-###  keygen
-https://stackoverflow.com/questions/67909016/is-there-a-way-to-generate-rsa-key-pair-client-side-with-javascript
-```js
-var crypt = new JSEncrypt({ default_key_size: 2048 }); 
-var keypair = {
-  publicKey: crypt.getPublicKey(), 
-  privateKey: crypt.getPrivateKey()
-};
-```
 https://github.com/PYPARA/forge/tree/main/rsa
 
 ## command-line
-- [https://github.com/jlevy/the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line) command-line
+- [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line)
 
 ## AST
-- [https://en.wikipedia.org/wiki/Abstract_syntax_tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree) AST
-- [https://astexplorer.net/](https://astexplorer.net/) AST Explorer
-- [https://github.com/acornjs/acorn](https://github.com/acornjs/acorn) Acorn  A small, fast, JavaScript-based JavaScript parser
+- [AST WIKI](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
+- [AST Explorer](https://astexplorer.net/)
+- [Acorn  A small, fast, JavaScript-based JavaScript parser](https://github.com/acornjs/acorn)
 
 ## Chrome 拓展
-- [https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)  Tampermonkey
-- [https://chrome.google.com/webstore/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg](https://chrome.google.com/webstore/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg) Wappalyzer
-- [https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj](https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj) ModHeader
-- [https://chrome.google.com/webstore/detail/axure-rp-extension-for-ch/dogkpdfcklifaemcdfbildhcofnopogp](https://chrome.google.com/webstore/detail/axure-rp-extension-for-ch/dogkpdfcklifaemcdfbildhcofnopogp) AxureRP
+- [Axure RP Extension for Chrome](https://chrome.google.com/webstore/detail/dogkpdfcklifaemcdfbildhcofnopogp)
+- [GoFullPage - Full Page Screen Capture](https://chrome.google.com/webstore/detail/fdpohaocaechififmbbbbbknoalclacl)
+- [JSON Viewer](https://chrome.google.com/webstore/detail/gbmdgpbipfallnflgajpaliibnhdgobh)
+- [ModHeader - Modify HTTP headers](https://chrome.google.com/webstore/detail/idgpnmonknjnojddfkpgkljpfnnfcklj)
+- [QR code go](https://chrome.google.com/webstore/detail/gcjekannlcclfkkhphflfdiebjcjndjp)
+- [React Developer Tools](https://chrome.google.com/webstore/detail/fmkadmapgofadopljbjfkapdkoienihi)
+- [Save All Resources](https://chrome.google.com/webstore/detail/abpdnfjocnmdomablahdcfnoggeeiedb)
+- [Sider: ChatGPT侧边栏 + GPTs, GPT-4 Turbo, 联网, 绘图](https://chrome.google.com/webstore/detail/difoiogjjojoaoomphldepapgpbgkhkb)
+- [Vue.js devtools](https://chrome.google.com/webstore/detail/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Wappalyzer - Technology profiler](https://chrome.google.com/webstore/detail/gppongmhjkpfnbhagpmjfkannfbllamg)
+- [沉浸式翻译: 双语对照网页翻译 & PDF文档翻译](https://chrome.google.com/webstore/detail/bpoadfkcbjbfhfodiogcnhhhpibjhbnh)
+- [篡改猴](https://chromewebstore.google.com/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
 ## VScode 拓展
 - GitLens
 - Live Server
+- Volar
+- ESLint
+- Github Copilot
+- Image preview
+- Chinese (Simplified) Language Pack for Visual Studio Code
+- Color Highlight
+- DotENV
+- Prettier - Code formatter
+- Draw.io Integration
